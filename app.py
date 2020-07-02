@@ -34,7 +34,7 @@ def loginLogic(name, pas):
         if name == 'teach@gmail.com' and pas == '123456789':
             return render_template()
         elif name == 'teach@gmail.com' and pas != '123456789':
-            return render_template('login.html')
+            return redirect('/login')
         else:
             cur = mysql.connection.cursor()
             userslen = cur.execute("SELECT * FROM students")
@@ -44,9 +44,9 @@ def loginLogic(name, pas):
                     if i[1] == name and i[2] == pas:
                         return render_template('student.html', student = i)
                     elif i[1] == name and i[2] != pas:
-                        return render_template('login.html')
+                        return redirect('/login')
                     else:
-                        return render_template('login.html')
+                        return redirect('/login')
 
 
 
