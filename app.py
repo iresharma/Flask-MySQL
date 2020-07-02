@@ -47,5 +47,9 @@ def createagame():
 def gamedetails():
     return render_template('gamedetails.html')
 
+@app.route('/student/gamepage')
+def gamepage():
+    return render_template('gamepage.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
