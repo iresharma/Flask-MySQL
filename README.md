@@ -22,3 +22,21 @@ List of games played with results
 
 Types of questions:
 1. sum of 1st row, 2nd, 3rd, cols, both diagols, entire grid
+
+
+
+Gid(auto increament) | Game Name | X-value | O-value | Empty-Value | Question Type | Type | Win% ----- Table Games
+
+
+Sid(auto increament) | Name | Pass | Win% ---- Table Students
+
+
+Gid | Sid | Result ---- Table gamesPlayed
+
+
+
+
+
+
+
+
