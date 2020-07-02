@@ -1,0 +1,12 @@
+.main-box{
+    max-width: 40rem;
+    width: 40rem;
+
+}
+
+.contain{
+    display: flex;
+    flex-direction: row;
+    align-self: center;
+    align-content: center;
+}
