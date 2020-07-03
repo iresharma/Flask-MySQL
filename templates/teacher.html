@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<style>
+.main-box{
+    max-width: 100rem;
+    width: 60rem;
+    height:60rem;
+}
+
+.contain{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10em;
+}
+</style>
+
+
+
+
+{% endblock %}
+
+{% block body %}
+<!--  -->
+
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <strong>Tic Tac Toe</strong>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div style="margin-top: 5em;width: 70em;display: flex;flex-direction: column;margin-left: auto;margin-right: auto;">
+    <article class="panel is-primary">
+        <p class="panel-heading">
+          Teacher Panel
+        </p>
+        <p class="panel-tabs">
+          <a class="is-active">Admin Options</a>
+        </p>
+        <a class="panel-block is-active">
+          <span class="panel-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+          </span>
+          Create a New Game
+        </a>
+        <a class="panel-block">
+          <span class="panel-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+          </span>
+          Show Game List
+        </a>
+        <a class="panel-block">
+          <span class="panel-icon">
+            <i class="fas fa-book" aria-hidden="true"></i>
+          </span>
+          Game Statistics
+        </a>
+      </article>
+</div>
+
+
+<!--  -->
+{% endblock %}

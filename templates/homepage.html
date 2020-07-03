@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<style>
+.main-box{
+    max-width: 100rem;
+    width: 60rem;
+    height:60rem;
+}
+
+.contain{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10em;
+}
+</style>
+
+
+{% endblock %}
+
+{% block body %}
+<!--  -->
+
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <strong>Tic Tac Toe</strong>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+    </div>
+
+    <div class="navbar-end">
+      <div class="navbar-item">
+        <div class="buttons">
+          <a class="button is-primary">
+            <strong>Sign up</strong>
+          </a>
+          <a class="button is-light">
+            Log in
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+<div class="contain">
+  <div class="main-box">
+    <article class="message is-primary">
+      <div class="message-header">
+        <p style="display: flex; flex-direction: row; justify-content: center;"><strong>Tic Tac Toe</strong></p>
+      </div>
+      <div class="message-body">
+        Welcome to my project.
+        Please choose an option :<br>
+        <div style="display: flex; flex-direction: row;justify-content: space-evenly;margin-top: 2em;">
+          <button class="button is-primary">Login</button>
+          <button class="button is-primary">Register</button>
+        </div>
+      </div>
+    </article>
+  </div>
+</div>
+
+
+<!--  -->
+{% endblock %}

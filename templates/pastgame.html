@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<style>
+.main-box{
+    max-width: 100rem;
+    width: 60rem;
+    height:60rem;
+}
+
+.contain{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10em;
+}
+</style>
+
+
+
+
+{% endblock %}
+
+{% block body %}
+<!--  -->
+
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <strong>Tic Tac Toe</strong>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div style="margin-top: 5em;width: 70em;display: flex;flex-direction: column;margin-left: auto;margin-right: auto;">
+    <article class="panel is-primary">
+        <p class="panel-heading">
+          Select a game
+        </p>
+        <div style="width: 50em;margin-left: auto;margin-right: auto;margin-top: 1em;margin-bottom: 1em;">
+            <div class="card">
+                <header class="card-header">
+                  <p class="card-header-title">
+                    Game Heading
+                  </p>
+                  <a href="#" class="card-header-icon" aria-label="more options">
+                    <span class="icon">
+                      <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
+                  </a>
+                </header>
+                <div class="card-content">
+                  <div class="content">
+                    <span style="color:green">GAME WON</span>
+                  </div>
+                </div>
+              </div>
+           </div>
+       <div style="width: 50em;margin-left: auto;margin-right: auto;margin-top: 1em;margin-bottom: 1em;">
+        <div class="card">
+            <header class="card-header">
+              <p class="card-header-title">
+                Game Heading
+              </p>
+              <a href="#" class="card-header-icon" aria-label="more options">
+                <span class="icon">
+                  <i class="fas fa-angle-down" aria-hidden="true"></i>
+                </span>
+              </a>
+            </header>
+            <div class="card-content">
+              <div class="content">
+                <span style="color:green">GAME WON</span>
+              </div>
+            </div>
+          </div>
+       </div>
+
+      </article>
+</div>
+
+
+<!--  -->
+{% endblock %}

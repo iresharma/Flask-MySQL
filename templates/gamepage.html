@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<style>
+.main-box{
+    max-width: 100rem;
+    width: 60rem;
+    height:60rem;
+}
+
+.contain{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10em;
+}
+</style>
+
+
+
+
+
+
+{% endblock %}
+
+{% block body %}
+<!--  -->
+
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <strong>Tic Tac Toe</strong>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div style="margin-top: 5em;width: 70em;display: flex;flex-direction: column;margin-left: auto;margin-right: auto;">
+    <article class="panel is-primary">
+        <p class="panel-heading">
+          Game Details
+        </p>
+       <!--  -->
+       <div style="margin:5em">
+        <table style="border: 1px solid black;">
+            <tr style="border: 1px solid black;">
+                <td id="1" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;text-align: center;vertical-align: middle;"></td>
+                <td id="2" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                <td id="3" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+            </tr>
+            <tr style="border: 1px solid black;">
+                <td id="4" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                <td id="5" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                <td id="6" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+            </tr>
+            <tr style="border: 1px solid black;">
+                <td id="7" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                <td id="8" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                <td id="9" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+            </tr>
+        </table>
+       </div>
+
+       <!--  -->
+      </article>
+</div>
+
+<script>
+    document.getElementById('1').addEventListener('click',()=>{
+        if(document.getElementById('1').textContent!='X' && document.getElementById('1').textContent!='O'){
+            document.getElementById('1').textContent = 'X';
+            var isFilled = false;
+            do{
+                let val = Math.floor(Math.random()*10).toString();
+                console.log(val);
+                if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O' && val!='0'){
+                    document.getElementById(val).textContent = 'O';
+                    isFilled = true;
+                }
+            }while(!isFilled)
+
+        }
+    });
+    document.getElementById('2').addEventListener('click',()=>{
+        if(document.getElementById('2').textContent!='X' && document.getElementById('2').textContent!='O'){
+            document.getElementById('2').textContent = 'X';
+            var isFilled = false;
+            do{
+                let val = Math.floor(Math.random()*10).toString();
+                if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
+                    document.getElementById(val).textContent = 'O';
+                    isFilled = true;
+                }
+            }while(!isFilled)
+
+        }
+    });
+    document.getElementById('3').addEventListener('click',()=>{
+        if(document.getElementById('3').textContent!='X' && document.getElementById('3').textContent!='O'){
+            document.getElementById('3').textContent = 'X';
+            var isFilled = false;
+            do{
+                let val = Math.floor(Math.random()*10).toString();
+                if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
+                    document.getElementById(val).textContent = 'O';
+                    isFilled = true;
+                }
+            }while(!isFilled)
+
+        }
+    });
+    document.getElementById('4').addEventListener('click',()=>{
+        if(document.getElementById('4').textContent!='X' && document.getElementById('4').textContent!='O'){
+            document.getElementById('4').textContent = 'X';
+            var isFilled = false;
+            do{
+                let val = Math.floor(Math.random()*10).toString();
+                if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
+                    document.getElementById(val).textContent = 'O';
+                    isFilled = true;
+                }
+            }while(!isFilled)
+
+        }
+    });
+    document.getElementById('5').addEventListener('click',()=>{
+        if(document.getElementById('5').textContent!='X' && document.getElementById('5').textContent!='O'){
+            document.getElementById('5').textContent = 'X';
+            var isFilled = false;
+            do{
+                let val = Math.floor(Math.random()*10).toString();
+                console.log(val);
+                if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
+                    document.getElementById(val).textContent = 'O';
+                    isFilled = true;
+                }
+            }while(!isFilled)
+
+        }
+    });
+    document.getElementById('6').addEventListener('click',()=>{
+        if(document.getElementById('6').textContent!='X' && document.getElementById('6').textContent!='O'){
+            document.getElementById('6').textContent = 'X';
+            var isFilled = false;
+            do{
+                let val = Math.floor(Math.random()*10).toString();
+                console.log(val);
+                if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
+                    document.getElementById(val).textContent = 'O';
+                    isFilled = true;
+                }
+            }while(!isFilled)
+
+        }
+    });
+    document.getElementById('7').addEventListener('click',()=>{
+        if(document.getElementById('7').textContent!='X' && document.getElementById('7').textContent!='O'){
+            document.getElementById('7').textContent = 'X';
+            var isFilled = false;
+            do{
+                let val = Math.floor(Math.random()*10).toString();
+                console.log(val);
+                if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
+                    document.getElementById(val).textContent = 'O';
+                    isFilled = true;
+                }
+            }while(!isFilled)
+
+        }
+    });
+    document.getElementById('8').addEventListener('click',()=>{
+        if(document.getElementById('8').textContent!='X' && document.getElementById('8').textContent!='O'){
+            document.getElementById('8').textContent = 'X';
+            var isFilled = false;
+            do{
+                let val = Math.floor(Math.random()*10).toString();
+                console.log(val);
+                if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
+                    document.getElementById(val).textContent = 'O';
+                    isFilled = true;
+                }
+            }while(!isFilled)
+
+        }
+    });
+    document.getElementById('9').addEventListener('click',()=>{
+        if(document.getElementById('9').textContent!='X' && document.getElementById('9').textContent!='O'){
+            document.getElementById('9').textContent = 'X';
+            var isFilled = false;
+            do{
+                let val = Math.floor(Math.random()*10).toString();
+                console.log(val);
+                if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
+                    document.getElementById(val).textContent = 'O';
+                    isFilled = true;
+                }
+            }while(!isFilled)
+
+        }
+    });
+</script>
+
+<!--  -->
+{% endblock %}

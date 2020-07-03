@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<style>
+.main-box{
+    max-width: 100rem;
+    width: 60rem;
+    height:60rem;
+}
+
+.contain{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10em;
+}
+</style>
+
+
+
+
+{% endblock %}
+
+{% block body %}
+<!--  -->
+
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a class="navbar-item" href="https://bulma.io">
+      <strong>Tic Tac Toe</strong>
+    </a>
+
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+
+  <div id="navbarBasicExample" class="navbar-menu">
+    <div class="navbar-start">
+      <a class="navbar-item">
+        Home
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div style="margin-top: 5em;width: 70em;display: flex;flex-direction: column;margin-left: auto;margin-right: auto;">
+    <article class="panel is-primary">
+        <p class="panel-heading">
+          Game Details
+        </p>
+       <!--  -->
+       <div>
+        <table class="table is-fullwidth">
+            <thead>
+              <tr>
+                <th><abbr title="#">ID</abbr></th>
+                <th>Name</th>
+                <th><abbr title="Played">Played</abbr></th>
+                <th><abbr title="Won">Wins</abbr></th>
+                <th><abbr title="Lost">Losses</abbr></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>1</th>
+                <td><strong>Manas</strong>
+                </td>
+                <td>15</td>
+                <td>12</td>
+                <td>3</td>
+              </tr>
+            </tbody>
+          </table>
+       </div>
+
+       <!--  -->
+      </article>
+</div>
+
+
+<!--  -->
+{% endblock %}
