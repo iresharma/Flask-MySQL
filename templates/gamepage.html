@@ -80,6 +80,20 @@
             <div class="game-status" style="margin-top: 1em; font-size: large;">
             </div>
            </div>
+           <div class="question-box" id="question-box" style="margin-top: 4em;font-size: 1.2em;display: none;">
+               <strong>Question -</strong>
+               <div style="margin-top: 1em;" class="question">
+                What is the sum of the first row if X = 2, O = 3 and empty block = 4?
+               </div>
+               <div style="margin-top: 1em;" class="field">
+                <div class="control">
+                  <input id="answer-box" class="input is-primary" type="number" placeholder="Answer">
+                </div>
+              </div>
+              <div>
+                <button style="margin-top: 2em;" class="button start-button is-success" onclick="checkAnswer()">Submit Answer</button>
+              </div>
+           </div>
     </div>
 
        <!--  -->
@@ -88,6 +102,275 @@
 
 <script>
 
+    var answer;
+
+    const checkAnswer = () => {
+        const originalAnswer = sumOfFirstRow(2,3,4);
+        const userAnswer = document.getElementById('answer-box').value;
+        console.log(originalAnswer);
+        console.log(userAnswer);
+        if(userAnswer == originalAnswer){
+            alert('Answer is correct!');
+        }
+    }
+
+    const sumOfFirstRow = (x,o,blank) => {
+        var sum = 0;
+        if(document.getElementById('1').textContent=='X'){
+            sum+=x;
+        }
+        else if(document.getElementById('1').textContent=='O'){
+            sum+=o;
+        }
+        else if(document.getElementById('1').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('2').textContent=='X'){
+            sum+=x;
+        }
+        else if(document.getElementById('2').textContent=='O'){
+            sum+=o;
+        }
+        else if(document.getElementById('2').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('3').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('3').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('3').textContent==''){
+            sum+=blank;
+        }
+        console.log(sum);
+        return sum;
+    }
+
+    const sumOfSecondRow = (x,o,blank) => {
+        var sum = 0;
+        if(document.getElementById('4').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('4').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('4').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('5').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('5').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('5').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('6').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('6').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('6').textContent==''){
+            sum+=blank;
+        }
+        return sum;
+    }
+
+    const sumOfThirdRow = (x,o,blank) => {
+        var sum = 0;
+        if(document.getElementById('7').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('7').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('7').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('8').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('8').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('8').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('9').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('9').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('9').textContent==''){
+            sum+=blank;
+        }
+        return sum;
+    }
+
+    const sumOfFirstCol = (x,o,blank) => {
+        var sum = 0;
+        if(document.getElementById('1').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('1').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('1').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('4').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('4').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('4').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('7').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('7').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('7').textContent==''){
+            sum+=blank;
+        }
+        return sum;
+    }
+    
+    const sumOfSecondCol = (x,o,blank) => {
+        var sum = 0;
+        if(document.getElementById('2').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('2').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('2').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('5').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('5').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('5').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('8').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('8').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('8').textContent==''){
+            sum+=blank;
+        }
+        return sum;
+    }
+    
+    const sumOfThirdCol = (x,o,blank) => {
+        var sum = 0;
+        if(document.getElementById('3').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('3').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('3').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('6').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('6').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('6').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('9').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('9').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('9').textContent==''){
+            sum+=blank;
+        }
+        return sum;
+    }
+    
+    const sumOfDiagOne = (x,o,blank) => {
+        var sum = 0;
+        if(document.getElementById('1').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('1').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('1').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('5').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('5').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('5').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('9').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('9').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('9').textContent==''){
+            sum+=blank;
+        }
+        return sum;
+    }
+    
+    const sumOfDiagTwo = (x,o,blank) => {
+        var sum = 0;
+        if(document.getElementById('3').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('3').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('3').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('5').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('5').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('5').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('7').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('7').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('7').textContent==''){
+            sum+=blank;
+        }
+        return sum;
+    }
+    
     const startGame = () =>{
         document.querySelector('.start-button').style.display = 'none';
     var gameStatus = true;
@@ -151,7 +434,12 @@
         var seven = document.getElementById('7').textContent=='X' || document.getElementById('7').textContent=='O';
         var eight = document.getElementById('8').textContent=='X' || document.getElementById('8').textContent=='O';
         var nine = document.getElementById('9').textContent=='X' || document.getElementById('9').textContent=='O';
-        checkWin();
+        if(!gameStatus){
+                answer = sumOfFirstRow(2,3,4);
+                document.getElementById('question-box').style.display = 'block';
+                console.log(document.getElementById('question-box'))
+                console.log('Game over');
+            }
         if(one && two && three && four && five && six && seven && eight && nine){
             if(document.querySelector('.game-status').textContent==''){
                 document.querySelector('.game-status').textContent = 'Game was a TIE!'
@@ -201,6 +489,8 @@
         }else{
             checkComputerWin();
         }
+        
+        isGameOver();
     }
     if(gameStatus){
     document.getElementById('1').addEventListener('click',()=>{
@@ -212,7 +502,7 @@
             if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
-                console.log(val);
+                //console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O' && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
@@ -285,7 +575,7 @@
             if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
-                console.log(val);
+                //console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
@@ -304,7 +594,7 @@
             if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
-                console.log(val);
+                //console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
@@ -323,7 +613,7 @@
             if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
-                console.log(val);
+                //console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
@@ -342,7 +632,7 @@
             if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
-                console.log(val);
+                //console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
@@ -361,7 +651,7 @@
             if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
-                console.log(val);
+                //console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
