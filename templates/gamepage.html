@@ -74,11 +74,11 @@
                     <td id="9" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
                 </tr>
             </table>
+            <div>
+                <button style="margin-top: 2em;" class="button start-button is-success" onclick="startGame()">Start</button>
+           </div>
             <div class="game-status" style="margin-top: 1em; font-size: large;">
             </div>
-           </div>
-           <div>
-
            </div>
     </div>
 
@@ -87,6 +87,9 @@
 </div>
 
 <script>
+
+    const startGame = () =>{
+        document.querySelector('.start-button').style.display = 'none';
     var gameStatus = true;
 
     userWon = () =>{
@@ -150,7 +153,11 @@
         var nine = document.getElementById('9').textContent=='X' || document.getElementById('9').textContent=='O';
         checkWin();
         if(one && two && three && four && five && six && seven && eight && nine){
+            if(document.querySelector('.game-status').textContent==''){
+                document.querySelector('.game-status').textContent = 'Game was a TIE!'
+            }
             console.log('Game over');
+            gameStatus = false;
             return true;
         }
         console.log('Game is not over');
@@ -195,14 +202,14 @@
             checkComputerWin();
         }
     }
-
     if(gameStatus){
-
     document.getElementById('1').addEventListener('click',()=>{
         if(document.getElementById('1').textContent!='X' && document.getElementById('1').textContent!='O'){
+            if(gameStatus)
             document.getElementById('1').textContent = 'X';
+            checkWin();
             var isFilled = false;
-            if(!isGameOver())
+            if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
@@ -217,9 +224,11 @@
     });
     document.getElementById('2').addEventListener('click',()=>{
         if(document.getElementById('2').textContent!='X' && document.getElementById('2').textContent!='O'){
+            if(gameStatus)
             document.getElementById('2').textContent = 'X';
+            checkWin();
             var isFilled = false;
-            if(!isGameOver())
+            if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
@@ -233,9 +242,11 @@
     });
     document.getElementById('3').addEventListener('click',()=>{
         if(document.getElementById('3').textContent!='X' && document.getElementById('3').textContent!='O'){
+            if(gameStatus)
             document.getElementById('3').textContent = 'X';
+            checkWin();
             var isFilled = false;
-            if(!isGameOver())
+            if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
@@ -249,9 +260,11 @@
     });
     document.getElementById('4').addEventListener('click',()=>{
         if(document.getElementById('4').textContent!='X' && document.getElementById('4').textContent!='O'){
+            if(gameStatus)
             document.getElementById('4').textContent = 'X';
+            checkWin();
             var isFilled = false;
-            if(!isGameOver())
+            if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
@@ -265,9 +278,11 @@
     });
     document.getElementById('5').addEventListener('click',()=>{
         if(document.getElementById('5').textContent!='X' && document.getElementById('5').textContent!='O'){
+            if(gameStatus)
             document.getElementById('5').textContent = 'X';
+            checkWin();
             var isFilled = false;
-            if(!isGameOver())
+            if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
@@ -282,9 +297,11 @@
     });
     document.getElementById('6').addEventListener('click',()=>{
         if(document.getElementById('6').textContent!='X' && document.getElementById('6').textContent!='O'){
+            if(gameStatus)
             document.getElementById('6').textContent = 'X';
+            checkWin();
             var isFilled = false;
-            if(!isGameOver())
+            if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
@@ -299,9 +316,11 @@
     });
     document.getElementById('7').addEventListener('click',()=>{
         if(document.getElementById('7').textContent!='X' && document.getElementById('7').textContent!='O'){
+            if(gameStatus)
             document.getElementById('7').textContent = 'X';
+            checkWin();
             var isFilled = false;
-            if(!isGameOver())
+            if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
@@ -316,9 +335,11 @@
     });
     document.getElementById('8').addEventListener('click',()=>{
         if(document.getElementById('8').textContent!='X' && document.getElementById('8').textContent!='O'){
+            if(gameStatus)
             document.getElementById('8').textContent = 'X';
+            checkWin();
             var isFilled = false;
-            if(!isGameOver())
+            if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
@@ -333,9 +354,11 @@
     });
     document.getElementById('9').addEventListener('click',()=>{
         if(document.getElementById('9').textContent!='X' && document.getElementById('9').textContent!='O'){
+            if(gameStatus)
             document.getElementById('9').textContent = 'X';
+            checkWin();
             var isFilled = false;
-            if(!isGameOver())
+            if(gameStatus)
             do{
                 let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
@@ -349,6 +372,7 @@
         }
     });
     }
+}
 </script>
 
 <!--  -->
