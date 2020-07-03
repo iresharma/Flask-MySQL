@@ -55,41 +55,161 @@
           Game Details
         </p>
        <!--  -->
-       <div style="margin:5em">
-        <table style="border: 1px solid black;">
-            <tr style="border: 1px solid black;">
-                <td id="1" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;text-align: center;vertical-align: middle;"></td>
-                <td id="2" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                <td id="3" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-            </tr>
-            <tr style="border: 1px solid black;">
-                <td id="4" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                <td id="5" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                <td id="6" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-            </tr>
-            <tr style="border: 1px solid black;">
-                <td id="7" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                <td id="8" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                <td id="9" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-            </tr>
-        </table>
-       </div>
+    <div style="display: flex; flex-direction: row; ">
+        <div style="margin:5em">
+            <table style="border: 1px solid black;">
+                <tr style="border: 1px solid black;">
+                    <td id="1" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;text-align: center;vertical-align: middle;"></td>
+                    <td id="2" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                    <td id="3" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                </tr>
+                <tr style="border: 1px solid black;">
+                    <td id="4" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                    <td id="5" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                    <td id="6" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                </tr>
+                <tr style="border: 1px solid black;">
+                    <td id="7" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                    <td id="8" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                    <td id="9" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                </tr>
+            </table>
+            <div class="game-status" style="margin-top: 1em; font-size: large;">
+            </div>
+           </div>
+           <div>
+
+           </div>
+    </div>
 
        <!--  -->
       </article>
 </div>
 
 <script>
+    var gameStatus = true;
+
+    userWon = () =>{
+        document.querySelector('.game-status').textContent = 'User has won the game!';
+        document.querySelector('.game-status').style.color = 'Green';
+        gameStatus = false;
+    }
+
+    computerWon = () => {
+        document.querySelector('.game-status').textContent = 'Computer has won the game!';
+        document.querySelector('.game-status').style.color = 'Red';
+        gameStatus = false;
+    }
+
+    checkComputerWin=() => {
+        var one = document.getElementById('1').textContent;
+        var two = document.getElementById('2').textContent;
+        var three = document.getElementById('3').textContent;
+        var four = document.getElementById('4').textContent;
+        var five = document.getElementById('5').textContent;
+        var six = document.getElementById('6').textContent;
+        var seven = document.getElementById('7').textContent;
+        var eight = document.getElementById('8').textContent;
+        var nine = document.getElementById('9').textContent;
+
+        if(one=='O' && two=='O' && three=='O'){ //Row 1
+            computerWon();
+        }
+        else if(one=='O' && five=='O' && nine=='O'){ //Diag 1
+            computerWon();
+        }
+        else if(four=='O' && five=='O' && six=='O'){ //Row 2
+            computerWon();
+        }
+        else if(seven=='O' && eight=='O' && nine=='O'){ //Row 3
+            computerWon();
+        }
+        else if(three=='O' && five=='O' && seven=='O'){ //Diag 2
+            computerWon();
+        }
+        else if(one=='O' && four=='O' && seven=='O'){ //Col 1
+            computerWon();
+        }
+        else if(two=='O' && five=='O' && eight=='O'){ //Col 2
+            computerWon();
+        }
+        else if(three=='O' && six=='O' && nine=='O'){
+            computerWon();
+        }
+    }
+
+    isGameOver = () =>{
+        var one = document.getElementById('1').textContent=='X' || document.getElementById('1').textContent=='O';
+        var two = document.getElementById('2').textContent=='X' || document.getElementById('2').textContent=='O';
+        var three = document.getElementById('3').textContent=='X' || document.getElementById('3').textContent=='O';
+        var four = document.getElementById('4').textContent=='X' || document.getElementById('4').textContent=='O';
+        var five = document.getElementById('5').textContent=='X' || document.getElementById('5').textContent=='O';
+        var six = document.getElementById('6').textContent=='X' || document.getElementById('6').textContent=='O';
+        var seven = document.getElementById('7').textContent=='X' || document.getElementById('7').textContent=='O';
+        var eight = document.getElementById('8').textContent=='X' || document.getElementById('8').textContent=='O';
+        var nine = document.getElementById('9').textContent=='X' || document.getElementById('9').textContent=='O';
+        checkWin();
+        if(one && two && three && four && five && six && seven && eight && nine){
+            console.log('Game over');
+            return true;
+        }
+        console.log('Game is not over');
+        return false;
+    }
+
+    checkWin = ()=>{
+        var one = document.getElementById('1').textContent;
+        var two = document.getElementById('2').textContent;
+        var three = document.getElementById('3').textContent;
+        var four = document.getElementById('4').textContent;
+        var five = document.getElementById('5').textContent;
+        var six = document.getElementById('6').textContent;
+        var seven = document.getElementById('7').textContent;
+        var eight = document.getElementById('8').textContent;
+        var nine = document.getElementById('9').textContent;
+
+        if(one=='X' && two=='X' && three=='X'){ //Row 1
+            userWon();
+        }
+        else if(one=='X' && five=='X' && nine=='X'){ //Diag 1
+            userWon();
+        }
+        else if(four=='X' && five=='X' && six=='X'){ //Row 2
+            userWon();
+        }
+        else if(seven=='X' && eight=='X' && nine=='X'){ //Row 3
+            userWon();
+        }
+        else if(three=='X' && five=='X' && seven=='X'){ //Diag 2
+            userWon();
+        }
+        else if(one=='X' && four=='X' && seven=='X'){ //Col 1
+            userWon();
+        }
+        else if(two=='X' && five=='X' && eight=='X'){ //Col 2
+            userWon();
+        }
+        else if(three=='X' && six=='X' && nine=='X'){
+            userWon();
+        }else{
+            checkComputerWin();
+        }
+    }
+
+    if(gameStatus){
+
     document.getElementById('1').addEventListener('click',()=>{
         if(document.getElementById('1').textContent!='X' && document.getElementById('1').textContent!='O'){
             document.getElementById('1').textContent = 'X';
             var isFilled = false;
+            if(!isGameOver())
             do{
-                let val = Math.floor(Math.random()*10).toString();
+                let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O' && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
+                    checkWin();
                 }
             }while(!isFilled)
 
@@ -99,11 +219,13 @@
         if(document.getElementById('2').textContent!='X' && document.getElementById('2').textContent!='O'){
             document.getElementById('2').textContent = 'X';
             var isFilled = false;
+            if(!isGameOver())
             do{
-                let val = Math.floor(Math.random()*10).toString();
+                let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
+                    checkWin();
                 }
             }while(!isFilled)
 
@@ -113,11 +235,13 @@
         if(document.getElementById('3').textContent!='X' && document.getElementById('3').textContent!='O'){
             document.getElementById('3').textContent = 'X';
             var isFilled = false;
+            if(!isGameOver())
             do{
-                let val = Math.floor(Math.random()*10).toString();
+                let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
+                    checkWin();
                 }
             }while(!isFilled)
 
@@ -127,11 +251,13 @@
         if(document.getElementById('4').textContent!='X' && document.getElementById('4').textContent!='O'){
             document.getElementById('4').textContent = 'X';
             var isFilled = false;
+            if(!isGameOver())
             do{
-                let val = Math.floor(Math.random()*10).toString();
+                let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
+                    checkWin();
                 }
             }while(!isFilled)
 
@@ -141,12 +267,14 @@
         if(document.getElementById('5').textContent!='X' && document.getElementById('5').textContent!='O'){
             document.getElementById('5').textContent = 'X';
             var isFilled = false;
+            if(!isGameOver())
             do{
-                let val = Math.floor(Math.random()*10).toString();
+                let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
+                    checkWin();
                 }
             }while(!isFilled)
 
@@ -156,12 +284,14 @@
         if(document.getElementById('6').textContent!='X' && document.getElementById('6').textContent!='O'){
             document.getElementById('6').textContent = 'X';
             var isFilled = false;
+            if(!isGameOver())
             do{
-                let val = Math.floor(Math.random()*10).toString();
+                let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
+                    checkWin();
                 }
             }while(!isFilled)
 
@@ -171,12 +301,14 @@
         if(document.getElementById('7').textContent!='X' && document.getElementById('7').textContent!='O'){
             document.getElementById('7').textContent = 'X';
             var isFilled = false;
+            if(!isGameOver())
             do{
-                let val = Math.floor(Math.random()*10).toString();
+                let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
+                    checkWin();
                 }
             }while(!isFilled)
 
@@ -186,12 +318,14 @@
         if(document.getElementById('8').textContent!='X' && document.getElementById('8').textContent!='O'){
             document.getElementById('8').textContent = 'X';
             var isFilled = false;
+            if(!isGameOver())
             do{
-                let val = Math.floor(Math.random()*10).toString();
+                let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
+                    checkWin();
                 }
             }while(!isFilled)
 
@@ -201,17 +335,20 @@
         if(document.getElementById('9').textContent!='X' && document.getElementById('9').textContent!='O'){
             document.getElementById('9').textContent = 'X';
             var isFilled = false;
+            if(!isGameOver())
             do{
-                let val = Math.floor(Math.random()*10).toString();
+                let val = Math.ceil(Math.random() * (9 - 1) + 1).toString();
                 console.log(val);
                 if(document.getElementById(val).textContent!='X' && document.getElementById(val).textContent!='O'  && val!='0'){
                     document.getElementById(val).textContent = 'O';
                     isFilled = true;
+                    checkWin();
                 }
             }while(!isFilled)
 
         }
     });
+    }
 </script>
 
 <!--  -->
