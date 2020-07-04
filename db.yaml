@@ -1,0 +1,4 @@
+Mysql_host: 'localhost'
+Mysql_user: 'root'
+Mysql_passowrd: ''
+Mysql_db: 'game'
