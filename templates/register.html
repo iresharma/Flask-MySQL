@@ -45,6 +45,7 @@
   <div style="width: 40em; display: flex; flex-direction: column;margin-top: 5em;margin-left: auto;margin-right:auto">
     <div style="border-style: solid;border-color: grey;padding-top: 5em;padding-bottom: 5em;padding-right: 1em;padding-left:1em;">
         <strong><span style="font-size: 1.5em;">Lets Register You!</span></strong>
+        <form action="" method="POST">
         <div class="field">
             <p class="control has-icons-left has-icons-right">
               <input class="input" type="text" placeholder="Name">
@@ -86,13 +87,14 @@
           <div style="display: flex;flex-direction: row;justify-content: space-between;">
             <div class="field">
                 <p class="control">
-                  <button class="button is-success">
+                  <button type="submit" value="Submit" class="button is-success">
                     Register
                   </button>
                 </p>
               </div>
 
           </div>
+        </form>
     </div>
   </div>
 {% endblock %}
