@@ -20,6 +20,7 @@ class games(BaseModel):
     name = CharField(null = False)
     x_value = IntegerField(null = False)
     o_value = IntegerField(null = False)
+    empty_value = IntegerField(null = False)
     qType1 = BooleanField(null = False, default = False)
     qType2 = BooleanField(null = False, default = False)
     qType3 = BooleanField(null = False, default = False)
@@ -66,7 +67,7 @@ def teacher():
 
 @app.route('/register')
 def register():
-    return render_template('register.html')
+    return render_template('register.html', emailerr = '', passerr = '')
 
 @app.route('/student')
 def student():
@@ -80,10 +81,6 @@ def viewgames():
 def pastgames():
     return render_template('pastgame.html')
 
-@app.route('/teacher/showgameslist')
-def showgameslist():
-    return render_template('showgameslist.html')
-
 @app.route('/teacher/createagame')
 def createagame():
     return render_template('creategame.html')
@@ -96,32 +93,64 @@ def gamedetails():
 def gamepage():
     return render_template('gamepage.html')
 
+
+#########################################################################################################
+#Logic routes
+#########################################################################################################
+
+
 @app.route('/loginLogic', methods = ['GET', 'POST'])
 def loginLogic():
     if request.method == 'POST':
         data = request.form
         if data['name'] == 'teacher@gmail.com' and data['password'] == '123456789':
-            return render_template('showgameslist.html')
+            return render_template('teacher.html')
         elif data['name'] == 'teacher@gmail.com' and data['password'] != '123456789':
             return render_template('login.html')
         else:
-            query = students.select()
-            return render_template('test.html', value = query)
+            try:
+                user = students.get(students.email == data['name'])
+                if user.pas == sha256(data['password'].encode()).hexdigest():
+                    return render_template('student.html')
+                else:
+                    return render_template('login.html', err = 'incorrect password')
+            except:
+                return render_template('login.html', err = 'doesnot exist')
+
+
 
 @app.route('/registerLogic', methods = ['GET', 'POST'])
 def registerLogic():
     if request.method == 'POST':
         data = request.form
         if data['confP'] != data['password']:
-            return redirect(url_for('register'))
+            return render_template('register.html', emailerr = '', passerr = 'Both password should match')
         else:
-            students.create(
-                sid = str(uuid4()),
-                name = data['name'],
-                pas = sha256(data['password'].encode()).hexdigest(),
-                email = data['email']
-            )
-            return redirect(url_for('pastgames'))
+            try:
+                students.create(
+                    sid = str(uuid4()),
+                    name = data['name'],
+                    pas = sha256(data['password'].encode()).hexdigest(),
+                    email = data['email']
+                )
+                return redirect(url_for('student'))
+            except:
+                return render_template('register.html', emailerr = 'Email id already exist', passerr = '')
+
+
+
+
+@app.route('/teacher/showgameslist')
+def showgameslist():
+    gameds = list(games.select())
+    return render_template('showgameslist.html', games = gameds)
+
+@app.route('/deleteGame/<id>')
+def deleteGame(id):
+    ref = games.get(games.gid == id)
+    dell = ref.delete_instance()
+    gameds = list(games.select())
+    return render_template('showgameslist.html', games = gameds)
 
 
 if __name__ == "__main__":
