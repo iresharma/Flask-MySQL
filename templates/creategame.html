@@ -39,63 +39,54 @@
   <div style="width: 40em; display: flex; flex-direction: column;margin-top: 5em;margin-left: auto;margin-right:auto">
     <div style="border-style: solid;border-color: grey;padding-top: 5em;padding-bottom: 5em;padding-right: 1em;padding-left:1em;">
         <strong><span style="font-size: 1.5em;">Create a game!</span></strong>
-        <form action="" method="POST">
+        <form action="/createGame" method="POST">
         <div class="field">
-            <p class="control has-icons-left has-icons-right">
-              <input class="input" type="text" placeholder="Game Name">
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
-              </span>
-            </p>
+          <input class="input" type="text" name="name" placeholder="Game Name">
           </div>
           <div class="field">
-            <p class="control has-icons-left has-icons-right">
-              <input class="input" type="number" placeholder="X value">
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
-              </span>
-            </p>
+            <input class="input" name="x_value" type="number" placeholder="X value">
           </div>
           <div class="field">
-            <p class="control has-icons-left has-icons-right">
-              <input class="input" type="number" placeholder="O value">
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
-              </span>
-            </p>
+            <input class="input" type="number" name="o_value" placeholder="O value">
           </div>
           <div class="field">
-            <p class="control has-icons-left has-icons-right">
-              <input class="input" type="number" placeholder="Empty value">
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
-              <span class="icon is-small is-right">
-                <i class="fas fa-check"></i>
-              </span>
-            </p>
+            <input class="input" type="number" name="empty_value" placeholder="Empty value">
           </div>
-          <div class="select is-multiple">
-            <select style="width: 40em;" size=4 multiple size="8">
-              <option value="Question 1">Question 1</option>
-              <option value="Question 2">Question 2</option>
-              <option value="Question 3">Question 3</option>
-            </select>
-          </div>
-          <div style="margin-top:2em" class="select is-multiple">
-            <select style="width: 40em;" size=2 multiple size="8">
-              <option value="Addition">Addition</option>
-              <option value="Multiplication">Multiplication</option>
-            </select>
+          <div class="columns">
+            <div class="column columns">
+              <div class="column">
+                <input type="checkbox" value="true" name="row1" class="checkbox">
+                <label for="vehicle1">Row 1</label><br>
+                <input type="checkbox" name="row2" class="checkbox">
+                <label for="vehicle1">Row 2</label><br>
+                <input type="checkbox" name="row3" class="checkbox">
+                <label for="vehicle1">Row 3</label><br>
+                <input type="checkbox" name="dia1" class="checkbox">
+                <label for="vehicle1">Diagonal 1</label><br>
+                <input type="checkbox" name="dia2" class="checkbox">
+                <label for="vehicle1">Diagonal 2</label><br>
+              </div>
+              <div class="column">
+                <input type="checkbox" name="col1" class="checkbox">
+                <label for="vehicle1">Col 1</label><br>
+                <input type="checkbox" name="col2" class="checkbox">
+                <label for="vehicle1">Col 2</label><br>
+                <input type="checkbox" name="col3" class="checkbox">
+                <label for="vehicle1">Col 3</label><br>
+                <input type="checkbox" name="entire" class="checkbox">
+                <label for="vehicle1">Entire grid</label><br>
+              </div>
+            </div>
+            <div class="column">
+              <select name="type" class="select">
+                <option value="0">
+                  Addition
+                </option>
+                <option value="1">
+                  Multiplication
+                </option>
+              </select>
+            </div>
           </div>
           <div style="display: flex;flex-direction: row;justify-content: space-between;margin-top: 2em;">
             <div class="field">

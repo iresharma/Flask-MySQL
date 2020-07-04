@@ -21,15 +21,15 @@ class games(BaseModel):
     x_value = IntegerField(null = False)
     o_value = IntegerField(null = False)
     empty_value = IntegerField(null = False)
-    qType1 = BooleanField(null = False, default = False)
-    qType2 = BooleanField(null = False, default = False)
-    qType3 = BooleanField(null = False, default = False)
-    qType4 = BooleanField(null = False, default = False)
-    qType5 = BooleanField(null = False, default = False)
-    qType6 = BooleanField(null = False, default = False)
-    qType7 = BooleanField(null = False, default = False)
-    qType8 = BooleanField(null = False, default = False)
-    qType9 = BooleanField(null = False, default = False)
+    col1 = BooleanField(null = False, default = False)
+    col2 = BooleanField(null = False, default = False)
+    col3 = BooleanField(null = False, default = False)
+    row1 = BooleanField(null = False, default = False)
+    row2 = BooleanField(null = False, default = False)
+    row3 = BooleanField(null = False, default = False)
+    dia1 = BooleanField(null = False, default = False)
+    dia2 = BooleanField(null = False, default = False)
+    entire = BooleanField(null = False, default = False)
     type = IntegerField(null = False, default = 0)
     win = IntegerField()
     
@@ -73,10 +73,6 @@ def register():
 def student():
     return render_template('student.html')
 
-@app.route('/student/viewgames')
-def viewgames():
-    return render_template('viewgames.html')
-
 @app.route('/student/pastgames')
 def pastgames():
     return render_template('pastgame.html')
@@ -84,14 +80,6 @@ def pastgames():
 @app.route('/teacher/createagame')
 def createagame():
     return render_template('creategame.html')
-
-@app.route('/teacher/gamedetails')
-def gamedetails():
-    return render_template('gamedetails.html')
-
-@app.route('/student/gamepage')
-def gamepage():
-    return render_template('gamepage.html')
 
 
 #########################################################################################################
@@ -106,12 +94,12 @@ def loginLogic():
         if data['name'] == 'teacher@gmail.com' and data['password'] == '123456789':
             return render_template('teacher.html')
         elif data['name'] == 'teacher@gmail.com' and data['password'] != '123456789':
-            return render_template('login.html')
+            return render_template('login.html', err = 'Incorrect password')
         else:
             try:
                 user = students.get(students.email == data['name'])
                 if user.pas == sha256(data['password'].encode()).hexdigest():
-                    return render_template('student.html')
+                    return render_template('student.html', name = user.name)
                 else:
                     return render_template('login.html', err = 'incorrect password')
             except:
@@ -133,7 +121,7 @@ def registerLogic():
                     pas = sha256(data['password'].encode()).hexdigest(),
                     email = data['email']
                 )
-                return redirect(url_for('student'))
+                return render_template('student.html', name = data['name'])
             except:
                 return render_template('register.html', emailerr = 'Email id already exist', passerr = '')
 
@@ -151,6 +139,44 @@ def deleteGame(id):
     dell = ref.delete_instance()
     gameds = list(games.select())
     return render_template('showgameslist.html', games = gameds)
+
+@app.route('/createGame', methods = ['POST'])
+def createGame():
+    if request.method == 'POST':
+        data = request.form
+        games.create(
+            gid = uuid4(),
+            name = data['name'],
+            x_value = data['x_value'],
+            o_value = data['o_value'],
+            empty_value = data['empty_value'],
+            col1 = True if 'col1' in data else False,
+            col2 = True if 'col2' in data else False,
+            col3 = True if 'col2' in data else False,
+            row1 = True if 'row1' in data else False,
+            row2 = True if 'row2' in data else False,
+            row3 = True if 'row3' in data else False,
+            dia1 = True if 'dia1' in data else False,
+            dia2 = True if 'dia2' in data else False,
+            entire = True if 'entire' in data else False,
+            type = 0 if data['type'] else 1
+        )
+        gameds = list(games.select())
+        return render_template('showgameslist.html', games = gameds)
+        
+
+
+@app.route('/student/viewgames')
+def viewgames():
+    gameds = list(games.select())
+    return render_template('viewgames.html', games = gameds)
+
+
+
+@app.route('/student/gamepage/<ids>')
+def gamepage(ids):
+    game = games.get(games.gid == ids)
+    return render_template('gamepage.html', game = game)
 
 
 if __name__ == "__main__":

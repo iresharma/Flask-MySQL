@@ -83,7 +83,7 @@
            <div class="question-box" id="question-box" style="margin-top: 4em;font-size: 1.2em;display: none;">
                <strong>Question -</strong>
                <div style="margin-top: 1em;" class="question">
-                What is the sum of the first row if X = 2, O = 3 and empty block = 4?
+                What is the {{ 'sum' if game.type == 0 else 'multiplication' }} of the first row if X = {{ game.x_value }}, O = {{ game.o_value }} and empty block = {{ game.empty_value }}?
                </div>
                <div style="margin-top: 1em;" class="field">
                 <div class="control">
@@ -110,7 +110,10 @@
         console.log(originalAnswer);
         console.log(userAnswer);
         if(userAnswer == originalAnswer){
-            alert('Answer is correct!');
+            alert('Answer is correct! 🎉');
+        }
+        else {
+            alert('Incorrect answer, try again ☹️')
         }
     }
 

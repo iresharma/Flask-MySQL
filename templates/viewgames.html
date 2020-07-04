@@ -53,10 +53,13 @@
           Welcome Manas!
         </p>
        <div style="width: 50em;margin-left: auto;margin-right: auto;margin-top: 1em;margin-bottom: 1em;">
+        <br>
+        {% for i in games %}
+        <br>
         <div class="card">
             <header class="card-header">
               <p class="card-header-title">
-                Game Heading
+                {{ i.name }}
               </p>
               <a href="#" class="card-header-icon" aria-label="more options">
                 <span class="icon">
@@ -66,40 +69,17 @@
             </header>
             <div class="card-content">
               <div class="content">
-                Some Random Game description
+                Ready to play a brand new game?
                 <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
               </div>
             </div>
             <footer class="card-footer">
-              <a href="#" class="card-footer-item">Play Game</a>
+              <a href="{{ '/student/gamepage/' + i.gid }}" class="card-footer-item">Play Game</a>
             </footer>
           </div>
-       </div>
-       <div style="width: 50em;margin-left: auto;margin-right: auto;margin-top: 1em;margin-bottom: 1em;">
-        <div class="card">
-            <header class="card-header">
-              <p class="card-header-title">
-                Game Heading
-              </p>
-              <a href="#" class="card-header-icon" aria-label="more options">
-                <span class="icon">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </a>
-            </header>
-            <div class="card-content">
-              <div class="content">
-                Some Random Game description
-                <br>
-                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-              </div>
-            </div>
-            <footer class="card-footer">
-              <a href="#" class="card-footer-item">Play Game</a>
-            </footer>
-          </div>
-       </div>
+          <br>
+          {% endfor %}
+        </div>
 
       </article>
 </div>
