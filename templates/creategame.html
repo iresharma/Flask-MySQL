@@ -39,6 +39,7 @@
   <div style="width: 40em; display: flex; flex-direction: column;margin-top: 5em;margin-left: auto;margin-right:auto">
     <div style="border-style: solid;border-color: grey;padding-top: 5em;padding-bottom: 5em;padding-right: 1em;padding-left:1em;">
         <strong><span style="font-size: 1.5em;">Create a game!</span></strong>
+        <form action="" method="POST">
         <div class="field">
             <p class="control has-icons-left has-icons-right">
               <input class="input" type="text" placeholder="Game Name">
@@ -83,16 +84,30 @@
               </span>
             </p>
           </div>
-          <div style="display: flex;flex-direction: row;justify-content: space-between;">
+          <div class="select is-multiple">
+            <select style="width: 40em;" size=4 multiple size="8">
+              <option value="Question 1">Question 1</option>
+              <option value="Question 2">Question 2</option>
+              <option value="Question 3">Question 3</option>
+            </select>
+          </div>
+          <div style="margin-top:2em" class="select is-multiple">
+            <select style="width: 40em;" size=2 multiple size="8">
+              <option value="Addition">Addition</option>
+              <option value="Multiplication">Multiplication</option>
+            </select>
+          </div>
+          <div style="display: flex;flex-direction: row;justify-content: space-between;margin-top: 2em;">
             <div class="field">
                 <p class="control">
-                  <button class="button is-success">
+                  <button type="submit" value="Submit" class="button is-success">
                     Create Game
                   </button>
                 </p>
               </div>
 
           </div>
+        </form>
     </div>
   </div>
 {% endblock %}
