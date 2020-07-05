@@ -377,6 +377,265 @@
         return sum;
     }
     
+    
+    const multOfFirstRow = (x,o,blank) => {
+        var mult = 1;
+        if(document.getElementById('1').textContent=='X'){
+            mult*=x;
+        }
+        else if(document.getElementById('1').textContent=='O'){
+            mult*=o;
+        }
+        else if(document.getElementById('1').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('2').textContent=='X'){
+            mult*=x;
+        }
+        else if(document.getElementById('2').textContent=='O'){
+            mult*=o;
+        }
+        else if(document.getElementById('2').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('3').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('3').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('3').textContent==''){
+            mult*=blank;
+        }
+        console.log(mult);
+        return mult;
+    }
+
+    const multOfSecondRow = (x,o,blank) => {
+        var mult = 0;
+        if(document.getElementById('4').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('4').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('4').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('5').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('5').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('5').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('6').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('6').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('6').textContent==''){
+            mult*=blank;
+        }
+        return mult;
+    }
+
+    const multOfThirdRow = (x,o,blank) => {
+        var sum = 1;
+        if(document.getElementById('7').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('7').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('7').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('8').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('8').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('8').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('9').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('9').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('9').textContent==''){
+            sum+=blank;
+        }
+        return sum;
+    }
+
+    const multOfFirstCol = (x,o,blank) => {
+        var mult = 1;
+        if(document.getElementById('1').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('1').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('1').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('4').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('4').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('4').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('7').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('7').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('7').textContent==''){
+            mult*=blank;
+        }
+        return mult;
+    }
+    
+    const multOfSecondCol = (x,o,blank) => {
+        var mult = 1;
+        if(document.getElementById('2').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('2').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('2').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('5').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('5').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('5').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('8').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('8').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('8').textContent==''){
+            mult*=blank;
+        }
+        return mult;
+    }
+    
+    const multOfThirdCol = (x,o,blank) => {
+        var mult = 1;
+        if(document.getElementById('3').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('3').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('3').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('6').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('6').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('6').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('9').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('9').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('9').textContent==''){
+            mult*=blank;
+        }
+        return mult;
+    }
+    
+    const multOfDiagOne = (x,o,blank) => {
+        var mult = 1;
+        if(document.getElementById('1').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('1').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('1').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('5').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('5').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('5').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('9').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('9').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('9').textContent==''){
+            mult*=blank;
+        }
+        return mult;
+    }
+    
+    const multOfDiagTwo = (x,o,blank) => {
+        var mult = 1;
+        if(document.getElementById('3').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('3').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('3').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('5').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('5').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('5').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('7').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('7').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('7').textContent==''){
+            mult*=blank;
+        }
+        return mult;
+    }
+    
+    
     const startGame = () =>{
         document.querySelector('.start-button').style.display = 'none';
     var gameStatus = true;
