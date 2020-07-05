@@ -153,6 +153,95 @@
         return sum;
     }
 
+    const sumOfGrid = (x,o,blank) => {
+        var sum = 0;
+        if(document.getElementById('1').textContent=='X'){
+            sum+=x;
+        }
+        else if(document.getElementById('1').textContent=='O'){
+            sum+=o;
+        }
+        else if(document.getElementById('1').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('2').textContent=='X'){
+            sum+=x;
+        }
+        else if(document.getElementById('2').textContent=='O'){
+            sum+=o;
+        }
+        else if(document.getElementById('2').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('3').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('3').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('3').textContent==''){
+            sum+=blank;
+        }
+        // Row 2
+        if(document.getElementById('4').textContent=='X'){
+            sum+=x;
+        }
+        else if(document.getElementById('4').textContent=='O'){
+            sum+=o;
+        }
+        else if(document.getElementById('4').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('5').textContent=='X'){
+            sum+=x;
+        }
+        else if(document.getElementById('5').textContent=='O'){
+            sum+=o;
+        }
+        else if(document.getElementById('5').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('6').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('6').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('6').textContent==''){
+            sum+=blank;
+        }
+        //Row 3
+        if(document.getElementById('7').textContent=='X'){
+            sum+=x;
+        }
+        else if(document.getElementById('7').textContent=='O'){
+            sum+=o;
+        }
+        else if(document.getElementById('7').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('8').textContent=='X'){
+            sum+=x;
+        }
+        else if(document.getElementById('8').textContent=='O'){
+            sum+=o;
+        }
+        else if(document.getElementById('8').textContent==''){
+            sum+=blank;
+        }
+        if(document.getElementById('9').textContent=='X'){
+            sum+=x;
+        }
+        if(document.getElementById('9').textContent=='O'){
+            sum+=o;
+        }
+        if(document.getElementById('9').textContent==''){
+            sum+=blank;
+        }
+        console.log(sum);
+        return sum;
+    }
+
     const sumOfSecondRow = (x,o,blank) => {
         var sum = 0;
         if(document.getElementById('4').textContent=='X'){
@@ -635,7 +724,95 @@
         return mult;
     }
     
-    
+    const multOfGrid = (x,o,blank) => {
+        var mult = 1;
+        if(document.getElementById('1').textContent=='X'){
+            mult*=x;
+        }
+        else if(document.getElementById('1').textContent=='O'){
+            mult*=o;
+        }
+        else if(document.getElementById('1').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('2').textContent=='X'){
+            mult*=x;
+        }
+        else if(document.getElementById('2').textContent=='O'){
+            mult*=o;
+        }
+        else if(document.getElementById('2').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('3').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('3').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('3').textContent==''){
+            mult*=blank;
+        }
+        // Row 2
+        if(document.getElementById('4').textContent=='X'){
+            mult*=x;
+        }
+        else if(document.getElementById('4').textContent=='O'){
+            mult*=o;
+        }
+        else if(document.getElementById('4').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('5').textContent=='X'){
+            mult*=x;
+        }
+        else if(document.getElementById('5').textContent=='O'){
+            mult*=o;
+        }
+        else if(document.getElementById('5').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('6').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('6').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('6').textContent==''){
+            mult*=blank;
+        }
+        //Row 3
+        if(document.getElementById('7').textContent=='X'){
+            mult*=x;
+        }
+        else if(document.getElementById('7').textContent=='O'){
+            mult*=o;
+        }
+        else if(document.getElementById('7').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('8').textContent=='X'){
+            mult*=x;
+        }
+        else if(document.getElementById('8').textContent=='O'){
+            mult*=o;
+        }
+        else if(document.getElementById('8').textContent==''){
+            mult*=blank;
+        }
+        if(document.getElementById('9').textContent=='X'){
+            mult*=x;
+        }
+        if(document.getElementById('9').textContent=='O'){
+            mult*=o;
+        }
+        if(document.getElementById('9').textContent==''){
+            mult*=blank;
+        }
+        console.log(mult);
+        return mult;
+    }
+
     const startGame = () =>{
         document.querySelector('.start-button').style.display = 'none';
     var gameStatus = true;
