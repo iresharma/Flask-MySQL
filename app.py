@@ -6,8 +6,9 @@ from flask import request
 from uuid import uuid4
 from peewee import *
 from hashlib import sha256
+import random
 
-db = MySQLDatabase('game', user = 'root', password = 'Mahesh-01022001', host = '127.0.0.1')
+db = MySQLDatabase('deshik', user = 'root', password = 'Mahesh-01022001', host = '127.0.0.1')
 
 
 #MySQL schema
@@ -31,23 +32,29 @@ class games(BaseModel):
     dia2 = BooleanField(null = False, default = False)
     entire = BooleanField(null = False, default = False)
     type = IntegerField(null = False, default = 0)
-    win = IntegerField()
+    played = IntegerField()
+    win = FloatField()
     
 class students(BaseModel):
     sid = CharField(primary_key = True, null = False)
     name = CharField(null = False)
     pas = CharField(null = False)
     email = CharField(null = False, unique = True)
-    win = CharField()
-    
-class gamesPlayed(BaseModel):
-    gid = IntegerField(null = False)
-    sid = IntegerField(null = False)
-    result = BooleanField(null = False)
-    gsid = CharField(primary_key = True, null = False)
 
 def create_tables():
-    db.create_tables([games, students, gamesPlayed])
+    db.create_tables([games, students])
+
+def choiceQues(ids):
+    seq = ['row1', 'row2', 'row3', 'col1', 'col2', 'col3', 'dia1', 'dia2', 'entire']
+    gameS = games.select().where(games.gid == ids).dicts().get()
+    print('=================================')
+    print(gameS)
+    while(True):
+        sel = random.choice(seq)
+        if gameS[sel]:
+            print(sel)
+            return sel
+        
 
 db.connect()
 
@@ -176,7 +183,27 @@ def viewgames():
 @app.route('/student/gamepage/<ids>')
 def gamepage(ids):
     game = games.get(games.gid == ids)
-    return render_template('gamepage.html', game = game)
+    type = choiceQues(ids)
+    return render_template('gamepage.html', game = game, type = type)
+
+
+@app.route('/gamesPlayed', methods = ['POST'])
+def gamePlayed():
+    if request.method == 'POST':
+        data = request.form
+        print(data)
+        game = games.get(games.gid == data['gid'])
+        played = games.update(played = game.played + 1).where(games.gid == data['gid'])
+        played.execute()
+        if data['result'] == '0':
+            wincalc = (game.played * game.win)/(game.played + 1) if game.win != 0 else 1/(game.played + 1)
+            played = games.update(win = wincalc).where(games.gid == data['gid'])
+            played.execute()
+        else:
+            wincalc = ((game.played * game.win) + 1)/(game.played + 1) if game.win != 0 else 1/(game.played + 1)
+            played = games.update(win = wincalc).where(games.gid == data['gid'])
+            played.execute()
+        return render_template('student.html')
 
 
 if __name__ == "__main__":

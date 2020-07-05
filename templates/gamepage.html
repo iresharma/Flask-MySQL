@@ -15,6 +15,10 @@
     justify-content: center;
     margin-top: 10em;
 }
+
+.id {
+    display: none;
+}
 </style>
 
 
@@ -53,6 +57,7 @@
     <article class="panel is-primary">
         <p class="panel-heading">
           Game Details
+          <span class="id">{{game.gid}}</span>
         </p>
        <!--  -->
     <div style="display: flex; flex-direction: row; ">
@@ -83,7 +88,7 @@
            <div class="question-box" id="question-box" style="margin-top: 4em;font-size: 1.2em;display: none;">
                <strong>Question -</strong>
                <div style="margin-top: 1em;" class="question">
-                What is the {{ 'sum' if game.type == 0 else 'multiplication' }} of the first row if X = <span id="x_value">{{ game.x_value }}</span>, O = <span id="o_value">{{ game.o_value }}</span> and empty block = <span id="empty_value">{{ game.empty_value }}</span> ?
+                What is the <span id="type">{{ 'sum' if game.type == 0 else 'multiplication' }}</span> of the <span id="ques">{{ type }}</span> if X = <span id="x_value">{{ game.x_value }}</span>, O = <span id="o_value">{{ game.o_value }}</span> and empty block = <span id="empty_value">{{ game.empty_value }}</span> ?
                </div>
                <div style="margin-top: 1em;" class="field">
                 <div class="control">
@@ -94,6 +99,11 @@
                 <button style="margin-top: 2em;" class="button start-button is-success" onclick="checkAnswer()">Submit Answer</button>
               </div>
            </div>
+           <form action="http://127.0.0.1:5000/gamesPlayed" method="POST" hidden>
+            <input type="text" name="gid" value="{{ game.gid }}">
+            <input type="text" name="result" value="" id="result">
+            <input type="submit" id="sub">
+        </form>
     </div>
 
        <!--  -->
@@ -112,12 +122,16 @@
         const userAnswer = document.getElementById('answer-box').value;
         console.log(originalAnswer);
         console.log(userAnswer);
+        var gid = document.querySelector('.id').innerHTML
         if(userAnswer == originalAnswer){
             alert('Answer is correct! 🎉');
+            document.querySelector('#result').value = 1
         }
         else {
-            alert('Incorrect answer, try again ☹️')
+            alert('Incorrect answer ☹️')
+            document.querySelector('#result').value = 0
         }
+        document.querySelector('#sub').click()
     }
 
     const sumOfFirstRow = (x,o,blank) => {
