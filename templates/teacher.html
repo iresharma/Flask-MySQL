@@ -28,7 +28,7 @@
 {% endblock %}
 
 {% block body %}
-<!--  -->
+<!-- THE APP BAR  -->
 
 <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
@@ -56,6 +56,7 @@
   <button style="font-size: 20px;"  class="button is-primary">Create a Game</button>
 </div>
 
+<!-- THE PANEL WHICH CONTAINS VIEW GAMES OPTION -->
 <div style="margin-top: 5em;width: 70em;display: flex;flex-direction: column;margin-left: auto;margin-right: auto;">
     <article class="panel is-primary">
         <p class="panel-heading">
@@ -80,6 +81,7 @@
                   <th>Win %</th>
                 </tr>
                 <tr>
+                  <!-- DYNAMICALLY RENDERING THE STRINGS -->
                   <td>{{ i.x_value }}</td>
                   <td>{{ i.o_value }}</td>
                   <td>{{ i.empty_value }}</td>
@@ -93,6 +95,7 @@
               </table>
              </div>
              <br><br>
+             <!-- DELETE GAME BUTTON -->
             <footer class="card-footer">
               <a href="{{ '/deleteGame/' + i.gid }}" class="card-footer-item">Delete Game</a>
             </footer>

@@ -60,6 +60,7 @@
           <span class="id">{{game.gid}}</span>
         </p>
        <!--  -->
+       <!-- THE GRID FOR TIC TAC TOE. THE GRID CONSISTS OF TABLE WITH CUSTOM CSS FOR EACH CELL TO SCALE TO EQUAL SIZE. -->
     <div style="display: flex; flex-direction: row; ">
         <div style="margin:5em">
             <table style="border: 1px solid black;">
@@ -84,6 +85,7 @@
            </div>
             <div class="game-status" style="margin-top: 1em; font-size: large;">
             </div>
+            <!-- THE QUESTION TAB CONSISTING OF THE QUESTION AND TEXT FIELD FOR ANSWER -->
            </div>
            <div class="question-box" id="question-box" style="margin-top: 4em;font-size: 1.2em;display: none;">
                <strong>Question -</strong>
@@ -113,7 +115,7 @@
 <script>
 
     var answer;
-
+// THIS FUNCTION VERIFIES THE ANSWER BY LOOKING UP AT THE TYPE OF QUESTION AND RUNNING APPROPRAITE FUNCTION TO FETCH THE ANSWER
     const checkAnswer = () => {
         var x = Number(document.querySelector('#x_value').innerHTML)
         var o = Number(document.querySelector('#o_value').innerHTML)
@@ -181,6 +183,7 @@
             }
         }
 
+// VERIFICATION OF ANSWER TAKES PLACE HERE
 
         const userAnswer = document.getElementById('answer-box').value;
         console.log(originalAnswer);
@@ -197,6 +200,7 @@
         document.querySelector('#sub').click()
     }
 
+// FUNCTIONS TO CALCULATE SUM OF ROWS AND COLUMNS
     const sumOfFirstRow = (x,o,blank) => {
         var sum = 0;
         if(document.getElementById('1').textContent=='X'){
@@ -890,22 +894,27 @@
         return mult;
     }
 
+    // THIS BUTTON STARTS THE ACTUAL GAME BY TRIGGERING THE FUNCTION OF TIC TAC TOE TO ACCEPT RESPONSES
+
     const startGame = () =>{
         document.querySelector('.start-button').style.display = 'none';
     var gameStatus = true;
+
+// RUNS IF USER HAS WON THE GAME
 
     userWon = () =>{
         document.querySelector('.game-status').textContent = 'User has won the game!';
         document.querySelector('.game-status').style.color = 'Green';
         gameStatus = false;
     }
-
+// RUNS IF COMPUTER HAS WON THE GAME
     computerWon = () => {
         document.querySelector('.game-status').textContent = 'Computer has won the game!';
         document.querySelector('.game-status').style.color = 'Red';
         gameStatus = false;
     }
 
+// CHECKS IF COMPUTER HAS WON
     checkComputerWin=() => {
         var one = document.getElementById('1').textContent;
         var two = document.getElementById('2').textContent;
@@ -943,6 +952,7 @@
         }
     }
 
+// CHECKS IF GAME IS OVER OR NOT
     isGameOver = () =>{
         var one = document.getElementById('1').textContent=='X' || document.getElementById('1').textContent=='O';
         var two = document.getElementById('2').textContent=='X' || document.getElementById('2').textContent=='O';
@@ -971,6 +981,7 @@
         return false;
     }
 
+// CHECKS IF USER HAS WON OR NOT
     checkWin = ()=>{
         var one = document.getElementById('1').textContent;
         var two = document.getElementById('2').textContent;
@@ -1011,6 +1022,8 @@
         
         isGameOver();
     }
+
+    // EVENT LISTENERS TO LISTEN TO THE CLICK EVENTS OF TIC TAC TOE 
     if(gameStatus){
     document.getElementById('1').addEventListener('click',()=>{
         if(document.getElementById('1').textContent!='X' && document.getElementById('1').textContent!='O'){
