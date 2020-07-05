@@ -83,7 +83,7 @@
            <div class="question-box" id="question-box" style="margin-top: 4em;font-size: 1.2em;display: none;">
                <strong>Question -</strong>
                <div style="margin-top: 1em;" class="question">
-                What is the {{ 'sum' if game.type == 0 else 'multiplication' }} of the first row if X = {{ game.x_value }}, O = {{ game.o_value }} and empty block = {{ game.empty_value }}?
+                What is the {{ 'sum' if game.type == 0 else 'multiplication' }} of the first row if X = <span id="x_value">{{ game.x_value }}</span>, O = <span id="o_value">{{ game.o_value }}</span> and empty block = <span id="empty_value">{{ game.empty_value }}</span> ?
                </div>
                <div style="margin-top: 1em;" class="field">
                 <div class="control">
@@ -105,7 +105,10 @@
     var answer;
 
     const checkAnswer = () => {
-        const originalAnswer = sumOfFirstRow(2,3,4);
+        var x = Number(document.querySelector('#x_value').innerHTML)
+        var o = Number(document.querySelector('#o_value').innerHTML)
+        var empty = Number(document.querySelector('#empty_value').innerHTML)
+        const originalAnswer = sumOfFirstRow(x, o, empty);
         const userAnswer = document.getElementById('answer-box').value;
         console.log(originalAnswer);
         console.log(userAnswer);
