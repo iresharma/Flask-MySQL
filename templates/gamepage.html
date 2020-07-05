@@ -118,11 +118,74 @@
         var x = Number(document.querySelector('#x_value').innerHTML)
         var o = Number(document.querySelector('#o_value').innerHTML)
         var empty = Number(document.querySelector('#empty_value').innerHTML)
-        const originalAnswer = sumOfFirstRow(x, o, empty);
+        var originalAnswer;
+
+        const operation = document.getElementById('type').textContent;
+        const selector = document.getElementById('ques').textContent;
+        if(operation=='sum'){
+            if(selector=='row1'){
+                originalAnswer = sumOfFirstRow(x,o,empty);
+            }
+            else if(selector=='row2'){
+                originalAnswer = sumOfSecondRow(x,o,empty);
+            }
+            else if(selector=='row3'){
+                originalAnswer = sumOfThirdRow(x,o,empty);
+            }
+            else if(selector=='col1'){
+                originalAnswer = sumOfFirstCol(x,o,empty);
+            }
+            else if(selector=='col2'){
+                originalAnswer = sumOfSecondCol(x,o,empty);
+            }
+            else if(selector=='col3'){
+                originalAnswer = sumOfThirdCol(x,o,empty);
+            }
+            else if(selector=='entire'){
+                originalAnswer = sumOfGrid(x,o,empty);
+            }
+            else if(selector=='dia1'){
+                originalAnswer = sumOfDiagOne(x,o,empty);
+            }
+            else if(selector=='dia2'){
+                originalAnswer = sumOfDiagTwo(x,o,empty);
+            }
+        }
+        else if(operation=='multiplication'){
+            if(selector=='row1'){
+                originalAnswer = multOfFirstRow(x,o,empty);
+            }
+            else if(selector=='row2'){
+                originalAnswer = multOfSecondRow(x,o,empty);
+            }
+            else if(selector=='row3'){
+                originalAnswer = multOfThirdRow(x,o,empty);
+            }
+            else if(selector=='col1'){
+                originalAnswer = multOfFirstCol(x,o,empty);
+            }
+            else if(selector=='col2'){
+                originalAnswer = multOfSecondCol(x,o,empty);
+            }
+            else if(selector=='col3'){
+                originalAnswer = multOfThirdCol(x,o,empty);
+            }
+            else if(selector=='entire'){
+                originalAnswer = multOfGrid(x,o,empty);
+            }
+            else if(selector=='dia1'){
+                originalAnswer = multOfDiagOne(x,o,empty);
+            }
+            else if(selector=='dia2'){
+                originalAnswer = multOfDiagTwo(x,o,empty);
+            }
+        }
+
+
         const userAnswer = document.getElementById('answer-box').value;
         console.log(originalAnswer);
         console.log(userAnswer);
-        var gid = document.querySelector('.id').innerHTML
+        var gid = document.querySelector('.id').innerHTML;
         if(userAnswer == originalAnswer){
             alert('Answer is correct! 🎉');
             document.querySelector('#result').value = 1
