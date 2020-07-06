@@ -84,18 +84,17 @@ def login():
 @app.route('/teacher')
 def teacher():
     gameds = list(games.select()) #fetching the list of games
-    idk = list(gameplayed.select().order_by(-gameplayed.points)) #fetching game stats in descending 
-    results = [] #initializing array for cleaner data
-    for i in range(len(idk)):
-        name = students.get(students.sid == idk[i].sid).name
-        print(name)
+    gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points)) #fetching game stats in descending 
+    results = {} #initializing array for cleaner data
+    for j in gameds:
+        results[j.gid] = []
+    for i in range(len(gameplayeddata)):
+        name = students.get(students.sid == gameplayeddata[i].sid).name
         k = {
             'name': name,
-            'points': idk[i].points,
-            'gid': idk[i].gid
+            'points': gameplayeddata[i].points,
         }
-        results.append(k)
-        print(results)
+        results[gameplayeddata[i].gid].append(k)
     return render_template('teacher.html', games = gameds, umm = results)
 
 @app.route('/register')
@@ -107,16 +106,15 @@ def student():
     gameds = list(games.select()) #fetching the list of games
     idk = list(gameplayed.select().order_by(-gameplayed.points)) #fetching game stats in descending 
     results = [] #initializing array for cleaner data
-    for i in range(len(idk)):
-        name = students.get(students.sid == idk[i].sid).name
-        print(name)
+    for j in gameds:
+        results[j.gid] = []
+    for i in range(len(gameplayeddata)):
+        name = students.get(students.sid == gameplayeddata[i].sid).name
         k = {
             'name': name,
-            'points': idk[i].points,
-            'gid': idk[i].gid
+            'points': gameplayeddata[i].points,
         }
-        results.append(k)
-        print(results)
+        results[gameplayeddata[i].gid].append(k)
     return render_template('student.html', games = gameds, umm = results)
 
 @app.route('/student/pastgames')
@@ -129,7 +127,7 @@ def createagame():
 
 
 #########################################################################################################
-###############################################Logic routes##############################################
+############################################## Logic routes #############################################
 #########################################################################################################
 
 
@@ -144,16 +142,15 @@ def loginLogic():
             loggedUser = 'teach' #keeping the user logged
             idk = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
             results = [] #initailizing array for cleaner data
-            for i in range(len(idk)):
-                name = students.get(students.sid == idk[i].sid).name
-                print(name)
+            for j in gameds:
+                results[j.gid] = []
+            for i in range(len(gameplayeddata)):
+                name = students.get(students.sid == gameplayeddata[i].sid).name
                 k = {
                     'name': name,
-                    'points': idk[i].points,
-                    'gid': idk[i].gid
+                    'points': gameplayeddata[i].points,
                 }
-                results.append(k)
-                print(results)
+                results[gameplayeddata[i].gid].append(k)
             return render_template('teacher.html', games = gameds, umm = results)
         elif data['name'] == 'teacher@gmail.com' and data['password'] != '123456789':
             return render_template('login.html', err = 'Incorrect password')
@@ -172,16 +169,15 @@ def loginLogic():
                         )
                         idk = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
                         results = [] #initializing array to store cleaner data
-                        for i in range(len(idk)):
-                            name = students.get(students.sid == idk[i].sid).name
-                            print(name)
+                        for j in gameds:
+                            results[j.gid] = []
+                        for i in range(len(gameplayeddata)):
+                            name = students.get(students.sid == gameplayeddata[i].sid).name
                             k = {
                                 'name': name,
-                                'points': idk[i].points,
-                                'gid': idk[i].gid
+                                'points': gameplayeddata[i].points,
                             }
-                            results.append(k)
-                            print(results)
+                            results[gameplayeddata[i].gid].append(k)
                         return render_template('student.html', games = gameds, umm = results)
                 else:
                     return render_template('login.html', err = 'incorrect password')
@@ -216,16 +212,15 @@ def registerLogic():
                     )
                     idk = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
                     results = [] #initializing empty array for cleaner data
-                    for i in range(len(idk)):
-                        name = students.get(students.sid == idk[i].sid).name
-                        print(name)
+                    for j in gameds:
+                        results[j.gid] = []
+                    for i in range(len(gameplayeddata)):
+                        name = students.get(students.sid == gameplayeddata[i].sid).name
                         k = {
                             'name': name,
-                            'points': idk[i].points,
-                            'gid': idk[i].gid
+                            'points': gameplayeddata[i].points,
                         }
-                        results.append(k)
-                        print(results)
+                        results[gameplayeddata[i].gid].append(k)
                 return render_template('student.html', games = gameds, umm = results)
             except:
                 return render_template('register.html', emailerr = 'Email id already exist', passerr = '')
@@ -238,16 +233,15 @@ def deleteGame(id):
     gameds = list(games.select())
     idk = list(gameplayed.select().order_by(-gameplayed.points))
     results = []
-    for i in range(len(idk)):
-        name = students.get(students.sid == idk[i].sid).name
-        print(name)
+    for j in gameds:
+        results[j.gid] = []
+    for i in range(len(gameplayeddata)):
+        name = students.get(students.sid == gameplayeddata[i].sid).name
         k = {
             'name': name,
-            'points': idk[i].points,
-            'gid': idk[i].gid
+            'points': gameplayeddata[i].points,
         }
-        results.append(k)
-        print(results)
+        results[gameplayeddata[i].gid].append(k)
     return render_template('showgameslist.html', games = gameds, umm = results)
 
 @app.route('/createGame', methods = ['POST'])
@@ -274,16 +268,15 @@ def createGame():
         gameds = list(games.select())
         idk = list(gameplayed.select().order_by(-gameplayed.points))
         results = []
-        for i in range(len(idk)):
-            name = students.get(students.sid == idk[i].sid).name
-            print(name)
+        for j in gameds:
+            results[j.gid] = []
+        for i in range(len(gameplayeddata)):
+            name = students.get(students.sid == gameplayeddata[i].sid).name
             k = {
                 'name': name,
-                'points': idk[i].points,
-                'gid': idk[i].gid
+                'points': gameplayeddata[i].points,
             }
-            results.append(k)
-            print(results)
+            results[gameplayeddata[i].gid].append(k)
         return render_template('showgameslist.html', games = gameds, umm = results)
 
 
@@ -332,16 +325,15 @@ def gamePlayed():
         gameds = list(games.select())
         idk = list(gameplayed.select().order_by(-gameplayed.points))
         results = []
-        for i in range(len(idk)):
-            name = students.get(students.sid == idk[i].sid).name
-            print(name)
+        for j in gameds:
+            results[j.gid] = []
+        for i in range(len(gameplayeddata)):
+            name = students.get(students.sid == gameplayeddata[i].sid).name
             k = {
                 'name': name,
-                'points': idk[i].points,
-                'gid': idk[i].gid
+                'points': gameplayeddata[i].points,
             }
-            results.append(k)
-            print(results)
+            results[gameplayeddata[i].gid].append(k)
         return render_template('student.html', games = gameds, umm = results)
 
 

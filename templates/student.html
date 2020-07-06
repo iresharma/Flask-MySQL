@@ -72,20 +72,22 @@
             </div>
             <table style="margin-left: auto;margin-right: auto;" class="table is-fullwidth">
               <tr>
+                <th>RANK</th>
                 <th>NAME</th>
                 <th>POINTS</th>
               </tr>
-              {% for j in range(umm|length) %}
-                {% if umm[j]['gid'] == i.gid %}
-                  <tr align="center">
+              {% for j in range(umm[i.gid]|length) %}
+                  <tr>
                     <td>
-                      {{ umm[j]['name'] }}
+                      {{ j+1 }}
                     </td>
                     <td>
-                      {{ umm[j]['points'] }}
+                      {{ umm[i.gid][j]['name'] }}
+                    </td>
+                    <td>
+                      {{ umm[i.gid][j]['points'] }}
                     </td>
                   </tr>
-                  {% endif %}
                 {% endfor %}
             </table>
             <footer class="card-footer">

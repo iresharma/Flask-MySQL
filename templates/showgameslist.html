@@ -87,6 +87,26 @@
                   <td>{{ i.win }}</td>
                 </tr>
               </table>
+              <table style="margin-left: auto;margin-right: auto;" class="table">
+                <tr>
+                  <th>RANK</th>
+                  <th>NAME</th>
+                  <th>POINTS</th>
+                </tr>
+                {% for j in range(umm[i.gid]|length) %}
+                    <tr>
+                      <td>
+                        {{ j+1 }}
+                      </td>
+                      <td>
+                        {{ umm[i.gid][j]['name'] }}
+                      </td>
+                      <td>
+                        {{ umm[i.gid][j]['points'] }}
+                      </td>
+                    </tr>
+                  {% endfor %}
+              </table>
              </div>
              <br><br>
             <footer class="card-footer">

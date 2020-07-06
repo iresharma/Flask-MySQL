@@ -42,7 +42,6 @@
       <span aria-hidden="true"></span>
     </a>
   </div>
-
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
       <a href="/" class="navbar-item">
@@ -95,20 +94,22 @@
              <br><br>
              <table style="margin-left: auto;margin-right: auto;" class="table">
               <tr>
+                <th>RANK</th>
                 <th>NAME</th>
                 <th>POINTS</th>
               </tr>
-              {% for j in range(umm|length) %}
-                {% if umm[j]['gid'] == i.gid %}
+              {% for j in range(umm[i.gid]|length) %}
                   <tr>
                     <td>
-                      {{ umm[j]['name'] }}
+                      {{ j+1 }}
                     </td>
                     <td>
-                      {{ umm[j]['points'] }}
+                      {{ umm[i.gid][j]['name'] }}
+                    </td>
+                    <td>
+                      {{ umm[i.gid][j]['points'] }}
                     </td>
                   </tr>
-                  {% endif %}
                 {% endfor %}
             </table>
              <br><br>
