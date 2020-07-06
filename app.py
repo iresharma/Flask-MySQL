@@ -1,14 +1,15 @@
-from flask import Flask
-from flask import render_template
-from flask import url_for
-from flask import redirect
-from flask import request
-from uuid import uuid4
-from peewee import *
-from hashlib import sha256
-import random
 
-db = MySQLDatabase('deshik', user = 'root', password = 'Mahesh-01022001', host = '127.0.0.1')
+#importing required modules
+
+from flask import Flask #main flask modulw
+from flask import render_template #to render html templates to the browser
+from flask import request #to manage requests made by the browser
+from uuid import uuid4 #to provide unique id to all data entries
+from peewee import * #Mysql connector package
+from hashlib import sha256 #hashing library to encrypt the passwords
+import random #random library to random functions
+
+db = MySQLDatabase('deshik', user = 'root', password = 'Mahesh-01022001', host = '127.0.0.1') #MySQL database credentials
 
 #MySQL schema
 class BaseModel(Model):
@@ -16,6 +17,7 @@ class BaseModel(Model):
         database = db
 
 class games(BaseModel):
+    #sql table thst stores the game info
     gid = CharField(primary_key = True, null = False)
     name = CharField(null = False)
     x_value = IntegerField(null = False)
@@ -35,19 +37,23 @@ class games(BaseModel):
     win = FloatField()
     
 class students(BaseModel):
+    #sql table that stores student values
     sid = CharField(primary_key = True, null = False)
     name = CharField(null = False)
     pas = CharField(null = False)
     email = CharField(null = False, unique = True)
 
 class gameplayed(BaseModel):
+    #sql table that stores game stats
     gid = CharField(null = True)
     sid = CharField(null = True)
     points = IntegerField(null = False)
 
 class logged(BaseModel):
+    #sql table to store current active student
     sid = CharField(null = False)
 
+#function to create tables in the database
 def create_tables():
     db.create_tables([games, students, gameplayed, logged])
 
@@ -338,3 +344,4 @@ if __name__ == "__main__":
     db.connect()
     create_tables()
     app.run(debug=True)
+
