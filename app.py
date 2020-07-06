@@ -57,6 +57,7 @@ class logged(BaseModel):
 def create_tables():
     db.create_tables([games, students, gameplayed, logged])
 
+#function to select a random question type
 def choiceQues(ids):
     seq = ['row1', 'row2', 'row3', 'col1', 'col2', 'col3', 'dia1', 'dia2', 'entire']
     gameS = games.select().where(games.gid == ids).dicts().get()
@@ -70,6 +71,8 @@ def choiceQues(ids):
 
 app = Flask(__name__)
 
+
+#routes
 @app.route('/')
 def home():
     return render_template('homepage.html')
@@ -80,9 +83,9 @@ def login():
                 
 @app.route('/teacher')
 def teacher():
-    gameds = list(games.select())
-    idk = list(gameplayed.select().order_by(-gameplayed.points))
-    results = []
+    gameds = list(games.select()) #fetching the list of games
+    idk = list(gameplayed.select().order_by(-gameplayed.points)) #fetching game stats in descending 
+    results = [] #initializing array for cleaner data
     for i in range(len(idk)):
         name = students.get(students.sid == idk[i].sid).name
         print(name)
@@ -101,9 +104,9 @@ def register():
 
 @app.route('/student')
 def student():
-    gameds = list(games.select())
-    idk = list(gameplayed.select().order_by(-gameplayed.points))
-    results = []
+    gameds = list(games.select()) #fetching the list of games
+    idk = list(gameplayed.select().order_by(-gameplayed.points)) #fetching game stats in descending 
+    results = [] #initializing array for cleaner data
     for i in range(len(idk)):
         name = students.get(students.sid == idk[i].sid).name
         print(name)
@@ -132,13 +135,15 @@ def createagame():
 
 @app.route('/loginLogic', methods = ['GET', 'POST'])
 def loginLogic():
+    #checking for the type of request
     if request.method == 'POST':
-        data = request.form
+        data = request.form #getting the forma data from request
+        #checking credentials
         if data['name'] == 'teacher@gmail.com' and data['password'] == '123456789':
-            gameds = list(games.select())
-            loggedUser = 'teach'
-            idk = list(gameplayed.select().order_by(-gameplayed.points))
-            results = []
+            gameds = list(games.select()) #getting list of games
+            loggedUser = 'teach' #keeping the user logged
+            idk = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
+            results = [] #initailizing array for cleaner data
             for i in range(len(idk)):
                 name = students.get(students.sid == idk[i].sid).name
                 print(name)
@@ -154,19 +159,19 @@ def loginLogic():
             return render_template('login.html', err = 'Incorrect password')
         else:
             try:
-                user = students.get(students.email == data['name'])
+                user = students.get(students.email == data['name']) # getting student where email == the entered value
                 if user.pas == sha256(data['password'].encode()).hexdigest():
                     try:
-                        gameds = list(games.select())
-                        ref = list(logged.select())[0].sid
-                        remove = logged.get(logged.sid == ref)
+                        gameds = list(games.select()) #getting the list of games
+                        ref = list(logged.select())[0].sid 
+                        remove = logged.get(logged.sid == ref) #deleting the record of older loggedIn user
                         remove.delete_instance()
                     finally:
                         logged.create(
                             sid = user.sid
                         )
-                        idk = list(gameplayed.select().order_by(-gameplayed.points))
-                        results = []
+                        idk = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
+                        results = [] #initializing array to store cleaner data
                         for i in range(len(idk)):
                             name = students.get(students.sid == idk[i].sid).name
                             print(name)
@@ -201,16 +206,16 @@ def registerLogic():
                     email = data['email']
                 )
                 try:
-                    gameds = list(games.select())
-                    ref = list(logged.select())[0].sid
-                    remove = logged.get(logged.sid == ref)
+                    gameds = list(games.select()) #getting the list of games
+                    ref = list(logged.select())[0].sid 
+                    remove = logged.get(logged.sid == ref) #deleting the record of older loggedIn user
                     remove.delete_instance()
                 finally:
                     logged.create(
                         sid = sid
                     )
-                    idk = list(gameplayed.select().order_by(-gameplayed.points))
-                    results = []
+                    idk = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
+                    results = [] #initializing empty array for cleaner data
                     for i in range(len(idk)):
                         name = students.get(students.sid == idk[i].sid).name
                         print(name)
