@@ -45,7 +45,7 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item">
+      <a href="/teacher" class="navbar-item">
         Home
       </a>
     </div>
@@ -53,7 +53,7 @@
 </nav>
 
 <div style="margin-top: 1em;text-align: center;">
-  <button style="font-size: 20px;"  class="button is-primary">Create a Game</button>
+  <a style="font-size: 20px;" href="http://127.0.0.1:5000/teacher/createagame" class="button is-primary">Create a Game</a>
 </div>
 
 <div style="margin-top: 5em;width: 70em;display: flex;flex-direction: column;margin-left: auto;margin-right: auto;">
@@ -88,10 +88,29 @@
                   {% else %}
                     <td>Multiplication</td>
                   {% endif %}
-                  <td>{{ i.win }}</td>
+                  <td>{{ i.win * 100 }}%</td>
                 </tr>
               </table>
              </div>
+             <br><br>
+             <table style="margin-left: auto;margin-right: auto;" class="table">
+              <tr>
+                <th>NAME</th>
+                <th>POINTS</th>
+              </tr>
+              {% for j in range(umm|length) %}
+                {% if umm[j]['gid'] == i.gid %}
+                  <tr>
+                    <td>
+                      {{ umm[j]['name'] }}
+                    </td>
+                    <td>
+                      {{ umm[j]['points'] }}
+                    </td>
+                  </tr>
+                  {% endif %}
+                {% endfor %}
+            </table>
              <br><br>
             <footer class="card-footer">
               <a href="{{ '/deleteGame/' + i.gid }}" class="card-footer-item">Delete Game</a>

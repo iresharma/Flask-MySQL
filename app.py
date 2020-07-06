@@ -10,7 +10,6 @@ import random
 
 db = MySQLDatabase('deshik', user = 'root', password = 'Mahesh-01022001', host = '127.0.0.1')
 
-
 #MySQL schema
 class BaseModel(Model):
     class Meta:
@@ -41,8 +40,16 @@ class students(BaseModel):
     pas = CharField(null = False)
     email = CharField(null = False, unique = True)
 
+class gameplayed(BaseModel):
+    gid = CharField(null = True)
+    sid = CharField(null = True)
+    points = IntegerField(null = False)
+
+class logged(BaseModel):
+    sid = CharField(null = False)
+
 def create_tables():
-    db.create_tables([games, students])
+    db.create_tables([games, students, gameplayed, logged])
 
 def choiceQues(ids):
     seq = ['row1', 'row2', 'row3', 'col1', 'col2', 'col3', 'dia1', 'dia2', 'entire']
@@ -54,9 +61,6 @@ def choiceQues(ids):
         if gameS[sel]:
             print(sel)
             return sel
-        
-
-db.connect()
 
 app = Flask(__name__)
 
@@ -70,7 +74,20 @@ def login():
                 
 @app.route('/teacher')
 def teacher():
-    return render_template('teacher.html')
+    gameds = list(games.select())
+    idk = list(gameplayed.select().order_by(-gameplayed.points))
+    results = []
+    for i in range(len(idk)):
+        name = students.get(students.sid == idk[i].sid).name
+        print(name)
+        k = {
+            'name': name,
+            'points': idk[i].points,
+            'gid': idk[i].gid
+        }
+        results.append(k)
+        print(results)
+    return render_template('teacher.html', games = gameds, umm = results)
 
 @app.route('/register')
 def register():
@@ -78,7 +95,20 @@ def register():
 
 @app.route('/student')
 def student():
-    return render_template('student.html')
+    gameds = list(games.select())
+    idk = list(gameplayed.select().order_by(-gameplayed.points))
+    results = []
+    for i in range(len(idk)):
+        name = students.get(students.sid == idk[i].sid).name
+        print(name)
+        k = {
+            'name': name,
+            'points': idk[i].points,
+            'gid': idk[i].gid
+        }
+        results.append(k)
+        print(results)
+    return render_template('student.html', games = gameds, umm = results)
 
 @app.route('/student/pastgames')
 def pastgames():
@@ -90,7 +120,7 @@ def createagame():
 
 
 #########################################################################################################
-#Logic routes
+###############################################Logic routes##############################################
 #########################################################################################################
 
 
@@ -99,14 +129,49 @@ def loginLogic():
     if request.method == 'POST':
         data = request.form
         if data['name'] == 'teacher@gmail.com' and data['password'] == '123456789':
-            return render_template('teacher.html')
+            gameds = list(games.select())
+            loggedUser = 'teach'
+            idk = list(gameplayed.select().order_by(-gameplayed.points))
+            results = []
+            for i in range(len(idk)):
+                name = students.get(students.sid == idk[i].sid).name
+                print(name)
+                k = {
+                    'name': name,
+                    'points': idk[i].points,
+                    'gid': idk[i].gid
+                }
+                results.append(k)
+                print(results)
+            return render_template('teacher.html', games = gameds, umm = results)
         elif data['name'] == 'teacher@gmail.com' and data['password'] != '123456789':
             return render_template('login.html', err = 'Incorrect password')
         else:
             try:
                 user = students.get(students.email == data['name'])
                 if user.pas == sha256(data['password'].encode()).hexdigest():
-                    return render_template('student.html', name = user.name)
+                    try:
+                        gameds = list(games.select())
+                        ref = list(logged.select())[0].sid
+                        remove = logged.get(logged.sid == ref)
+                        remove.delete_instance()
+                    finally:
+                        logged.create(
+                            sid = user.sid
+                        )
+                        idk = list(gameplayed.select().order_by(-gameplayed.points))
+                        results = []
+                        for i in range(len(idk)):
+                            name = students.get(students.sid == idk[i].sid).name
+                            print(name)
+                            k = {
+                                'name': name,
+                                'points': idk[i].points,
+                                'gid': idk[i].gid
+                            }
+                            results.append(k)
+                            print(results)
+                        return render_template('student.html', games = gameds, umm = results)
                 else:
                     return render_template('login.html', err = 'incorrect password')
             except:
@@ -122,30 +187,57 @@ def registerLogic():
             return render_template('register.html', emailerr = '', passerr = 'Both password should match')
         else:
             try:
+                sid = str(uuid4())
                 students.create(
-                    sid = str(uuid4()),
+                    sid = sid,
                     name = data['name'],
                     pas = sha256(data['password'].encode()).hexdigest(),
                     email = data['email']
                 )
-                return render_template('student.html', name = data['name'])
+                try:
+                    gameds = list(games.select())
+                    ref = list(logged.select())[0].sid
+                    remove = logged.get(logged.sid == ref)
+                    remove.delete_instance()
+                finally:
+                    logged.create(
+                        sid = sid
+                    )
+                    idk = list(gameplayed.select().order_by(-gameplayed.points))
+                    results = []
+                    for i in range(len(idk)):
+                        name = students.get(students.sid == idk[i].sid).name
+                        print(name)
+                        k = {
+                            'name': name,
+                            'points': idk[i].points,
+                            'gid': idk[i].gid
+                        }
+                        results.append(k)
+                        print(results)
+                return render_template('student.html', games = gameds, umm = results)
             except:
                 return render_template('register.html', emailerr = 'Email id already exist', passerr = '')
 
-
-
-
-@app.route('/teacher/showgameslist')
-def showgameslist():
-    gameds = list(games.select())
-    return render_template('showgameslist.html', games = gameds)
 
 @app.route('/deleteGame/<id>')
 def deleteGame(id):
     ref = games.get(games.gid == id)
     dell = ref.delete_instance()
     gameds = list(games.select())
-    return render_template('showgameslist.html', games = gameds)
+    idk = list(gameplayed.select().order_by(-gameplayed.points))
+    results = []
+    for i in range(len(idk)):
+        name = students.get(students.sid == idk[i].sid).name
+        print(name)
+        k = {
+            'name': name,
+            'points': idk[i].points,
+            'gid': idk[i].gid
+        }
+        results.append(k)
+        print(results)
+    return render_template('showgameslist.html', games = gameds, umm = results)
 
 @app.route('/createGame', methods = ['POST'])
 def createGame():
@@ -166,17 +258,22 @@ def createGame():
             dia1 = True if 'dia1' in data else False,
             dia2 = True if 'dia2' in data else False,
             entire = True if 'entire' in data else False,
-            type = 0 if data['type'] else 1
+            type = 1 if 'type' in data else 0
         )
         gameds = list(games.select())
-        return render_template('showgameslist.html', games = gameds)
-        
-
-
-@app.route('/student/viewgames')
-def viewgames():
-    gameds = list(games.select())
-    return render_template('viewgames.html', games = gameds)
+        idk = list(gameplayed.select().order_by(-gameplayed.points))
+        results = []
+        for i in range(len(idk)):
+            name = students.get(students.sid == idk[i].sid).name
+            print(name)
+            k = {
+                'name': name,
+                'points': idk[i].points,
+                'gid': idk[i].gid
+            }
+            results.append(k)
+            print(results)
+        return render_template('showgameslist.html', games = gameds, umm = results)
 
 
 
@@ -184,17 +281,19 @@ def viewgames():
 def gamepage(ids):
     game = games.get(games.gid == ids)
     type = choiceQues(ids)
-    return render_template('gamepage.html', game = game, type = type)
+    loggedUser = list(logged.select())[0].sid
+    return render_template('gamepage.html', game = game, type = type, id = loggedUser)
 
 
 @app.route('/gamesPlayed', methods = ['POST'])
 def gamePlayed():
     if request.method == 'POST':
         data = request.form
-        print(data)
         game = games.get(games.gid == data['gid'])
+        loggedUser = list(logged.select())[0].sid
         played = games.update(played = game.played + 1).where(games.gid == data['gid'])
         played.execute()
+        gamea = list(gameplayed.select())
         if data['result'] == '0':
             wincalc = (game.played * game.win)/(game.played + 1) if game.win != 0 else 1/(game.played + 1)
             played = games.update(win = wincalc).where(games.gid == data['gid'])
@@ -203,9 +302,39 @@ def gamePlayed():
             wincalc = ((game.played * game.win) + 1)/(game.played + 1) if game.win != 0 else 1/(game.played + 1)
             played = games.update(win = wincalc).where(games.gid == data['gid'])
             played.execute()
-        return render_template('student.html')
+            check = False
+            for g in gamea:
+                print('loop')
+                if g.gid == data['gid'] and g.sid == loggedUser:
+                    print(g.id)
+                    update = gameplayed.update(points = g.points + 1).where(gameplayed.id == g.id)
+                    update.execute()
+                    check = True
+            if check == False:
+                gameplayed.create(
+                    gid = data['gid'],
+                    sid = loggedUser,
+                    points = 1
+                )
+                print('didnt work================')
+        print(gamea)
+        gameds = list(games.select())
+        idk = list(gameplayed.select().order_by(-gameplayed.points))
+        results = []
+        for i in range(len(idk)):
+            name = students.get(students.sid == idk[i].sid).name
+            print(name)
+            k = {
+                'name': name,
+                'points': idk[i].points,
+                'gid': idk[i].gid
+            }
+            results.append(k)
+            print(results)
+        return render_template('student.html', games = gameds, umm = results)
 
 
 if __name__ == "__main__":
+    db.connect()
     create_tables()
     app.run(debug=True)

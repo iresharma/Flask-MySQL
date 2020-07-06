@@ -70,6 +70,24 @@
                 <br>
               </div>
             </div>
+            <table style="margin-left: auto;margin-right: auto;" class="table is-fullwidth">
+              <tr>
+                <th>NAME</th>
+                <th>POINTS</th>
+              </tr>
+              {% for j in range(umm|length) %}
+                {% if umm[j]['gid'] == i.gid %}
+                  <tr align="center">
+                    <td>
+                      {{ umm[j]['name'] }}
+                    </td>
+                    <td>
+                      {{ umm[j]['points'] }}
+                    </td>
+                  </tr>
+                  {% endif %}
+                {% endfor %}
+            </table>
             <footer class="card-footer">
               <a href="{{ '/student/gamepage/' + i.gid }}" class="card-footer-item">Play Game</a>
             </footer>
