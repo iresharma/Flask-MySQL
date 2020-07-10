@@ -9,7 +9,7 @@ from peewee import * #Mysql connector package
 from hashlib import sha256 #hashing library to encrypt the passwords
 import random #random library to random functions
 
-db = MySQLDatabase('deshik', user = 'root', password = 'Mahesh-01022001', host = '127.0.0.1') #MySQL database credentials
+db = MySQLDatabase('test', user = 'root', password = 'Mahesh-01022001', host = '127.0.0.1') #MySQL database credentials
 
 #MySQL schema
 class BaseModel(Model):
@@ -85,7 +85,7 @@ def login():
 def teacher():
     gameds = list(games.select()) #fetching the list of games
     gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points)) #fetching game stats in descending 
-    results = {} #initializing array for cleaner data
+    results = {} #initializing array for cleaner data\
     for j in gameds:
         results[j.gid] = []
     for i in range(len(gameplayeddata)):
@@ -96,6 +96,7 @@ def teacher():
         }
         results[gameplayeddata[i].gid].append(k)
     return render_template('teacher.html', games = gameds, umm = results)
+    
 
 @app.route('/register')
 def register():
@@ -104,7 +105,7 @@ def register():
 @app.route('/student')
 def student():
     gameds = list(games.select()) #fetching the list of games
-    idk = list(gameplayed.select().order_by(-gameplayed.points)) #fetching game stats in descending 
+    gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points)) #fetching game stats in descending 
     results = [] #initializing array for cleaner data
     for j in gameds:
         results[j.gid] = []
@@ -140,7 +141,7 @@ def loginLogic():
         if data['name'] == 'teacher@gmail.com' and data['password'] == '123456789':
             gameds = list(games.select()) #getting list of games
             loggedUser = 'teach' #keeping the user logged
-            idk = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
+            gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
             results = [] #initailizing array for cleaner data
             for j in gameds:
                 results[j.gid] = []
@@ -167,8 +168,8 @@ def loginLogic():
                         logged.create(
                             sid = user.sid
                         )
-                        idk = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
-                        results = [] #initializing array to store cleaner data
+                        gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
+                        results = {} #initializing array to store cleaner data
                         for j in gameds:
                             results[j.gid] = []
                         for i in range(len(gameplayeddata)):
@@ -210,8 +211,8 @@ def registerLogic():
                     logged.create(
                         sid = sid
                     )
-                    idk = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
-                    results = [] #initializing empty array for cleaner data
+                    gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
+                    results = {} #initializing empty array for cleaner data
                     for j in gameds:
                         results[j.gid] = []
                     for i in range(len(gameplayeddata)):
@@ -231,7 +232,7 @@ def deleteGame(id):
     ref = games.get(games.gid == id)
     dell = ref.delete_instance()
     gameds = list(games.select())
-    idk = list(gameplayed.select().order_by(-gameplayed.points))
+    gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points))
     results = []
     for j in gameds:
         results[j.gid] = []
@@ -266,8 +267,8 @@ def createGame():
             type = 1 if 'type' in data else 0
         )
         gameds = list(games.select())
-        idk = list(gameplayed.select().order_by(-gameplayed.points))
-        results = []
+        gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points))
+        results = {}
         for j in gameds:
             results[j.gid] = []
         for i in range(len(gameplayeddata)):
@@ -323,8 +324,8 @@ def gamePlayed():
                 print('didnt work================')
         print(gamea)
         gameds = list(games.select())
-        idk = list(gameplayed.select().order_by(-gameplayed.points))
-        results = []
+        gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points))
+        results = {}
         for j in gameds:
             results[j.gid] = []
         for i in range(len(gameplayeddata)):
