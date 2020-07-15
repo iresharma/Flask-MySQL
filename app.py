@@ -106,7 +106,7 @@ def register():
 def student():
     gameds = list(games.select()) #fetching the list of games
     gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points)) #fetching game stats in descending 
-    results = [] #initializing array for cleaner data
+    results = {} #initializing array for cleaner data
     for j in gameds:
         results[j.gid] = []
     for i in range(len(gameplayeddata)):
@@ -142,7 +142,7 @@ def loginLogic():
             gameds = list(games.select()) #getting list of games
             loggedUser = 'teach' #keeping the user logged
             gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
-            results = [] #initailizing array for cleaner data
+            results = {} #initailizing array for cleaner data
             for j in gameds:
                 results[j.gid] = []
             for i in range(len(gameplayeddata)):
@@ -233,7 +233,7 @@ def deleteGame(id):
     dell = ref.delete_instance()
     gameds = list(games.select())
     gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points))
-    results = []
+    results = {}
     for j in gameds:
         results[j.gid] = []
     for i in range(len(gameplayeddata)):
