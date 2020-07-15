@@ -101,7 +101,7 @@
                 <button style="margin-top: 2em;" class="button start-button is-success" onclick="checkAnswer()">Submit Answer</button>
               </div>
            </div>
-           <form action="http://127.0.0.1:5000/gamesPlayed" method="POST" hidden>
+           <form action="/gamesPlayed" method="POST" hidden>
             <input type="text" name="gid" value="{{ game.gid }}">
             <input type="text" name="result" value="" id="result">
             <input type="submit" id="sub">
