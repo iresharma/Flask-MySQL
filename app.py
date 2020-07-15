@@ -9,7 +9,7 @@ from peewee import * #Mysql connector package
 from hashlib import sha256 #hashing library to encrypt the passwords
 import random #random library to random functions
 
-db = MySQLDatabase('test', user = 'root', password = 'Mahesh-01022001', host = '127.0.0.1') #MySQL database credentials
+db = MySQLDatabase('heroku_ae969646dae0806', user = 'b6ed7d43c71cc2', password = '396f7677', host = 'us-cdbr-east-02.cleardb.com')
 
 #MySQL schema
 class BaseModel(Model):
