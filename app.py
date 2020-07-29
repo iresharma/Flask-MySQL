@@ -9,7 +9,7 @@ from peewee import * #Mysql connector package
 from hashlib import sha256 #hashing library to encrypt the passwords
 import random #random library to random functions
 
-db = MySQLDatabase('deshik', user = 'root', password = 'Mahesh-01022001', host = '127.0.0.1')
+db = MySQLDatabase('project', user = 'proj', password = 'password123*', host = '127.0.0.1')
 
 #MySQL schema
 class BaseModel(Model):
@@ -33,8 +33,8 @@ class games(BaseModel):
     dia2 = BooleanField(null = False, default = False)
     entire = BooleanField(null = False, default = False)
     type = IntegerField(null = False, default = 0)
-    played = IntegerField()
-    win = FloatField()
+    played = IntegerField(default = 0)
+    win = FloatField(default = 100.0)
     
 class students(BaseModel):
     #sql table that stores student values
