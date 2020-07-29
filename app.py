@@ -9,7 +9,7 @@ from peewee import * #Mysql connector package
 from hashlib import sha256 #hashing library to encrypt the passwords
 import random #random library to random functions
 
-db = MySQLDatabase('heroku_ae969646dae0806', user = 'b6ed7d43c71cc2', password = '396f7677', host = 'us-cdbr-east-02.cleardb.com')
+db = MySQLDatabase('deshik', user = 'root', password = 'Mahesh-01022001', host = '127.0.0.1')
 
 #MySQL schema
 class BaseModel(Model):
@@ -138,22 +138,9 @@ def loginLogic():
     if request.method == 'POST':
         data = request.form #getting the forma data from request
         #checking credentials
-        if data['name'] == 'teacher@gmail.com' and data['password'] == '123456789':
-            gameds = list(games.select()) #getting list of games
-            loggedUser = 'teach' #keeping the user logged
-            gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
-            results = {} #initailizing array for cleaner data
-            for j in gameds:
-                results[j.gid] = []
-            for i in range(len(gameplayeddata)):
-                name = students.get(students.sid == gameplayeddata[i].sid).name
-                k = {
-                    'name': name,
-                    'points': gameplayeddata[i].points,
-                }
-                results[gameplayeddata[i].gid].append(k)
-            return render_template('teacher.html', games = gameds, umm = results)
-        elif data['name'] == 'teacher@gmail.com' and data['password'] != '123456789':
+        if data['name'] == 'teacher@gmail.com' and data['password'] == 'teacher@123':
+            return render_template('teacher.html')
+        elif data['name'] == 'teacher@gmail.com' and data['password'] != 'teacher@123':
             return render_template('login.html', err = 'Incorrect password')
         else:
             try:
@@ -336,6 +323,23 @@ def gamePlayed():
             }
             results[gameplayeddata[i].gid].append(k)
         return render_template('student.html', games = gameds, umm = results)
+
+@app.route('/gameStats')
+def gameStats():
+    gameds = list(games.select()) #getting list of games
+    loggedUser = 'teach' #keeping the user logged
+    gameplayeddata = list(gameplayed.select().order_by(-gameplayed.points)) #getting game stats in descending order
+    results = {} #initailizing array for cleaner data
+    for j in gameds:
+        results[j.gid] = []
+    for i in range(len(gameplayeddata)):
+        name = students.get(students.sid == gameplayeddata[i].sid).name
+        k = {
+            'name': name,
+            'points': gameplayeddata[i].points,
+        }
+        results[gameplayeddata[i].gid].append(k)
+    return render_template('showgameslist.html', games = gameds, umm = results)
 
 
 if __name__ == "__main__":

@@ -614,35 +614,35 @@
     }
 
     const multOfThirdRow = (x,o,blank) => {
-        var sum = 1;
+        var mult = 1;
         if(document.getElementById('7').textContent=='X'){
-            sum+=x;
+            mult*=x;
         }
         if(document.getElementById('7').textContent=='O'){
-            sum+=o;
+            mult*=o;
         }
         if(document.getElementById('7').textContent==''){
-            sum+=blank;
+            mult*=blank;
         }
         if(document.getElementById('8').textContent=='X'){
-            sum+=x;
+            mult*=x;
         }
         if(document.getElementById('8').textContent=='O'){
-            sum+=o;
+            mult*=o;
         }
         if(document.getElementById('8').textContent==''){
-            sum+=blank;
+            mult*=blank;
         }
         if(document.getElementById('9').textContent=='X'){
-            sum+=x;
+            mult*=x;
         }
         if(document.getElementById('9').textContent=='O'){
-            sum+=o;
+            mult*=o;
         }
         if(document.getElementById('9').textContent==''){
-            sum+=blank;
+            mult*=blank;
         }
-        return sum;
+        return mult;
     }
 
     const multOfFirstCol = (x,o,blank) => {
@@ -914,6 +914,13 @@
         gameStatus = false;
     }
 
+
+    isDraw = () =>{
+        document.querySelector('.game-status').textContent = 'It was a tie!';
+        document.querySelector('.game-status').style.color = 'Orange';
+        gameStatus = false;
+    }
+
 // CHECKS IF COMPUTER HAS WON
     checkComputerWin=() => {
         var one = document.getElementById('1').textContent;
@@ -925,6 +932,10 @@
         var seven = document.getElementById('7').textContent;
         var eight = document.getElementById('8').textContent;
         var nine = document.getElementById('9').textContent;
+
+        if((one=='O' || one=='X') && (two=='O' || two=='X') && (three=='O' || three=='X') && (four=='O' || four=='X') && (five=='O' || five=='X') && (six=='O' || six=='X') && (seven=='O' || seven=='X') && (eight=='O' || eight=='X') && (nine=='O' || nine=='X')){
+            isDraw();
+        }
 
         if(one=='O' && two=='O' && three=='O'){ //Row 1
             computerWon();

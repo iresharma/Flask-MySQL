@@ -1,127 +1,52 @@
 {% extends 'base.html' %}
 
 
-{% block head %}
-<style>
-.main-box{
-    max-width: 100rem;
-    width: 60rem;
-    height:60rem;
-}
-
-.contain{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin-top: 10em;
-}
-
-.cen {
-  display: flex;
-  justify-content: center;
-}
-</style>
-
-
-
-
+{% block title %}
 {% endblock %}
 
 {% block body %}
-<!--  -->
-
+<style>
+    .boxs {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 100vh;
+        padding: 40px;
+    }
+    .column {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
 <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="">
-      <strong>Tic Tac Toe</strong>
-    </a>
-
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a href="/" class="navbar-item">
-        Home
+    <div class="navbar-brand">
+      <a class="navbar-item" href="">
+        <strong>Tic Tac Toe</strong>
+      </a>
+  
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </a>
     </div>
-  </div>
-</nav>
-
-<div style="margin-top: 1em;text-align: center;">
-  <a style="font-size: 20px;" href="/teacher/createagame" class="button is-primary">Create a Game</a>
+  
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a href="/" class="navbar-item">
+          Home
+        </a>
+      </div>
+    </div>
+  </nav>
+<div class="columns boxs">
+    <div class="column">
+        <a href="/teacher/createagame" style="width: 100%; height: 200px;" class="button is-primary">Create Game</a>
+    </div>
+    <div class="column">
+        <a href="/gameStats" style="width: 100%; height: 200px;" class="button is-primary">Game Stats</a>
+    </div>
 </div>
-
-<div style="margin-top: 5em;width: 70em;display: flex;flex-direction: column;margin-left: auto;margin-right: auto;">
-    <article class="panel is-primary">
-        <p class="panel-heading">
-          View Games
-        </p>
-        {% for i in games %}
-       <div style="width: 50em;margin-left: auto;margin-right: auto;margin-top: 1em;margin-bottom: 1em;">
-        <div class="card">
-            <header class="card-header">
-              <p class="card-header-title">
-                {{ i.name }}
-              </p>
-             </header>
-             <br><br>
-             <div class="cen">
-              <table class="table is-hoverable is-bordered">
-                <tr>
-                  <th>X value</th>
-                  <th>O value</th>
-                  <th>Empty Value</th>
-                  <th>Type</th>
-                  <th>Win %</th>
-                </tr>
-                <tr>
-                  <td>{{ i.x_value }}</td>
-                  <td>{{ i.o_value }}</td>
-                  <td>{{ i.empty_value }}</td>
-                  {% if i.type == 0 %}
-                    <td>Addition</td>
-                  {% else %}
-                    <td>Multiplication</td>
-                  {% endif %}
-                  <td>{{ i.win * 100 }}%</td>
-                </tr>
-              </table>
-             </div>
-             <br><br>
-             <table style="margin-left: auto;margin-right: auto;" class="table">
-              <tr>
-                <th>RANK</th>
-                <th>NAME</th>
-                <th>POINTS</th>
-              </tr>
-              {% for j in range(umm[i.gid]|length) %}
-                  <tr>
-                    <td>
-                      {{ j+1 }}
-                    </td>
-                    <td>
-                      {{ umm[i.gid][j]['name'] }}
-                    </td>
-                    <td>
-                      {{ umm[i.gid][j]['points'] }}
-                    </td>
-                  </tr>
-                {% endfor %}
-            </table>
-             <br><br>
-            <footer class="card-footer">
-              <a href="{{ '/deleteGame/' + i.gid }}" class="card-footer-item">Delete Game</a>
-            </footer>
-          </div>
-       </div>
-       {% endfor %}
-      </article>
-</div>
-
-
-<!--  -->
 {% endblock %}
