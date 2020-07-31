@@ -7,6 +7,7 @@
     max-width: 100rem;
     width: 60rem;
     height:60rem;
+    background-color: rgb(248, 248, 149);
 }
 
 .contain{
@@ -14,6 +15,11 @@
     flex-direction: row;
     justify-content: center;
     margin-top: 10em;
+    background-color: rgb(248, 248, 149);
+}
+
+.panel {
+    background-color: rgb(248, 248, 149);
 }
 
 .id {
@@ -62,28 +68,41 @@
        <!--  -->
        <!-- THE GRID FOR TIC TAC TOE. THE GRID CONSISTS OF TABLE WITH CUSTOM CSS FOR EACH CELL TO SCALE TO EQUAL SIZE. -->
     <div style="display: flex; flex-direction: row; ">
-        <div style="margin:5em">
-            <table style="border: 1px solid black;">
-                <tr style="border: 1px solid black;">
-                    <td id="1" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;text-align: center;vertical-align: middle;"></td>
-                    <td id="2" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                    <td id="3" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                </tr>
-                <tr style="border: 1px solid black;">
-                    <td id="4" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                    <td id="5" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                    <td id="6" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                </tr>
-                <tr style="border: 1px solid black;">
-                    <td id="7" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                    <td id="8" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                    <td id="9" style="border: 1px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                </tr>
-            </table>
-            <div>
-                <button style="margin-top: 2em;" class="button start-button is-success" onclick="startGame()">Start</button>
-           </div>
-            <div class="game-status" style="margin-top: 1em; font-size: large;">
+        <div style="margin:5em" class="columns">
+            <div class="column">
+                <table style="border: 1px solid black;">
+                    <tr style="border: 1px solid black;">
+                        <td id="1" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;text-align: center;vertical-align: middle;"></td>
+                        <td id="2" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                        <td id="3" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                        <td id="4" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                        <td id="5" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                        <td id="6" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                    </tr>
+                    <tr style="border: 1px solid black;">
+                        <td id="7" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                        <td id="8" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                        <td id="9" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                    </tr>
+                </table>
+                <div class="game-status">
+                    <button style="margin-top: 2em;" class="button start-button is-success" onclick="startGame()">Start</button>
+               </div>
+            </div>
+            <div class="kol column" style="font-size: large;">
+                <b>Instructions (How to play the game!!):</b><br><br><br>
+
+                1: You are ‘X’ and the computer is ‘0’.  <br>
+                2: Sit back and enjoy playing Tic-Tac-Toe with the computer. <br>
+                3: Once there is a winner, or a tie, the mathematics question that is created shows. <br>
+                4: The two types of calculations are: Addition and Multiplication. <br>
+                5: Row 1 is the first horizontal row, and so on for the other rows. <br>
+                6: Column 1 is the first vertical row, and so on for the other columns. <br>
+                7: Diagonal 1 is from top right to bottom left, and vice versa for Diagonal 2. <br>
+                8: Answer the question according to the pattern of the grid when the game ends. <br>
+                9: All the best!! <br>
             </div>
             <!-- THE QUESTION TAB CONSISTING OF THE QUESTION AND TEXT FIELD FOR ANSWER -->
            </div>
@@ -974,6 +993,8 @@
         var seven = document.getElementById('7').textContent=='X' || document.getElementById('7').textContent=='O';
         var eight = document.getElementById('8').textContent=='X' || document.getElementById('8').textContent=='O';
         var nine = document.getElementById('9').textContent=='X' || document.getElementById('9').textContent=='O';
+        document.querySelector('.kol').textContent = ''
+        document.querySelector('.kol').classList.remove('column')
         if(!gameStatus){
                 answer = sumOfFirstRow(2,3,4);
                 document.getElementById('question-box').style.display = 'block';
@@ -1040,6 +1061,7 @@
         if(document.getElementById('1').textContent!='X' && document.getElementById('1').textContent!='O'){
             if(gameStatus)
             document.getElementById('1').textContent = 'X';
+            document.getElementById('1').style.color = 'red';
             checkWin();
             var isFilled = false;
             if(gameStatus)
@@ -1059,6 +1081,7 @@
         if(document.getElementById('2').textContent!='X' && document.getElementById('2').textContent!='O'){
             if(gameStatus)
             document.getElementById('2').textContent = 'X';
+            document.getElementById('2').style.color = 'red';
             checkWin();
             var isFilled = false;
             if(gameStatus)
@@ -1077,6 +1100,7 @@
         if(document.getElementById('3').textContent!='X' && document.getElementById('3').textContent!='O'){
             if(gameStatus)
             document.getElementById('3').textContent = 'X';
+            document.getElementById('3').style.color = 'red';
             checkWin();
             var isFilled = false;
             if(gameStatus)
@@ -1095,6 +1119,7 @@
         if(document.getElementById('4').textContent!='X' && document.getElementById('4').textContent!='O'){
             if(gameStatus)
             document.getElementById('4').textContent = 'X';
+            document.getElementById('4').style.color = 'red';
             checkWin();
             var isFilled = false;
             if(gameStatus)
@@ -1113,6 +1138,7 @@
         if(document.getElementById('5').textContent!='X' && document.getElementById('5').textContent!='O'){
             if(gameStatus)
             document.getElementById('5').textContent = 'X';
+            document.getElementById('5').style.color = 'red';
             checkWin();
             var isFilled = false;
             if(gameStatus)
@@ -1132,6 +1158,7 @@
         if(document.getElementById('6').textContent!='X' && document.getElementById('6').textContent!='O'){
             if(gameStatus)
             document.getElementById('6').textContent = 'X';
+            document.getElementById('6').style.color = 'red';
             checkWin();
             var isFilled = false;
             if(gameStatus)
@@ -1151,6 +1178,7 @@
         if(document.getElementById('7').textContent!='X' && document.getElementById('7').textContent!='O'){
             if(gameStatus)
             document.getElementById('7').textContent = 'X';
+            document.getElementById('7').style.color = 'red';
             checkWin();
             var isFilled = false;
             if(gameStatus)
@@ -1170,6 +1198,7 @@
         if(document.getElementById('8').textContent!='X' && document.getElementById('8').textContent!='O'){
             if(gameStatus)
             document.getElementById('8').textContent = 'X';
+            document.getElementById('8').style.color = 'red';
             checkWin();
             var isFilled = false;
             if(gameStatus)
@@ -1189,6 +1218,7 @@
         if(document.getElementById('9').textContent!='X' && document.getElementById('9').textContent!='O'){
             if(gameStatus)
             document.getElementById('9').textContent = 'X';
+            document.getElementById('9').style.color = 'red';
             checkWin();
             var isFilled = false;
             if(gameStatus)

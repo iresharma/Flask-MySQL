@@ -80,6 +80,13 @@
                   <tr>
                     <td>
                       {{ j+1 }}
+                      {% if j == 0 %}
+                        <i class="fas fa-crown"></i>
+                      {% elif j == 1 %}
+                        <i class="fas fa-award"></i>
+                      {% elif j == 2 %}
+                        <i class="fas fa-trophy"></i>
+                      {% endif %}
                     </td>
                     <td>
                       {{ umm[i.gid][j]['name'] }}
