@@ -20,6 +20,9 @@
   display: flex;
   justify-content: center;
 }
+.table tr td {
+  text-align: center;
+}
 </style>
 
 
@@ -96,7 +99,7 @@
                 {% for j in range(umm[i.gid]|length) %}
                     <tr>
                       <td>
-                        {{ j+1 }}
+                        {{ j+1 }}&nbsp;
                         {% if j == 0 %}
                           <i class="fas fa-crown"></i>
                         {% elif j == 1 %}

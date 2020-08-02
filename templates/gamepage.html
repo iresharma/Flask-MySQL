@@ -25,6 +25,9 @@
 .id {
     display: none;
 }
+.table tr td {
+    font-weight: 1000;
+}
 </style>
 
 
@@ -70,21 +73,24 @@
     <div style="display: flex; flex-direction: row; ">
         <div style="margin:5em" class="columns">
             <div class="column">
-                <table style="border: 1px solid black;">
-                    <tr style="border: 1px solid black;">
-                        <td id="1" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;text-align: center;vertical-align: middle;"></td>
-                        <td id="2" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                        <td id="3" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                <span>Player 1: {{ name }}</span>
+                <span>Player 2: Computer</span>
+                <br><br>
+                <table style="border: 1px solid white;">
+                    <tr style="border: 1px solid white;">
+                        <td id="1" style="border: 5px solid white;width: 5em;height: 5em;cursor: pointer;text-align: center;vertical-align: middle;"></td>
+                        <td id="2" style="border: 5px solid white;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                        <td id="3" style="border: 5px solid white;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
                     </tr>
-                    <tr style="border: 1px solid black;">
-                        <td id="4" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                        <td id="5" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                        <td id="6" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                    <tr style="border: 1px solid white;">
+                        <td id="4" style="border: 5px solid white;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                        <td id="5" style="border: 5px solid white;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                        <td id="6" style="border: 5px solid white;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
                     </tr>
-                    <tr style="border: 1px solid black;">
-                        <td id="7" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                        <td id="8" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
-                        <td id="9" style="border: 5px solid black;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                    <tr style="border: 1px solid white;">
+                        <td id="7" style="border: 5px solid white;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                        <td id="8" style="border: 5px solid white;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
+                        <td id="9" style="border: 5px solid white;width: 5em;height: 5em;cursor: pointer;vertical-align: middle;vertical-align: middle;text-align: center;"></td>
                     </tr>
                 </table>
                 <div class="game-status">
@@ -126,7 +132,6 @@
             <input type="submit" id="sub">
         </form>
     </div>
-
        <!--  -->
       </article>
 </div>
@@ -203,22 +208,20 @@
         }
 
 // VERIFICATION OF ANSWER TAKES PLACE HERE
-
         const userAnswer = document.getElementById('answer-box').value;
         console.log(originalAnswer);
         console.log(userAnswer);
         var gid = document.querySelector('.id').innerHTML;
         if(userAnswer == originalAnswer){
-            alert('Answer is correct! 🎉');
+            alert('You won')
             document.querySelector('#result').value = 1
         }
         else {
-            alert('Incorrect answer ☹️')
+            alert('You lost')
             document.querySelector('#result').value = 0
         }
         document.querySelector('#sub').click()
     }
-
 // FUNCTIONS TO CALCULATE SUM OF ROWS AND COLUMNS
     const sumOfFirstRow = (x,o,blank) => {
         var sum = 0;

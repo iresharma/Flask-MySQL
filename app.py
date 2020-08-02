@@ -215,7 +215,8 @@ def registerLogic():
                         }
                         results[gameplayeddata[i].gid].append(k)
                 return render_template('student.html', games = gameds, umm = results)
-            except:
+            except Exception as e:
+                print(str(e))
                 return render_template('register.html', emailerr = 'Email id already exist', passerr = '')
 
 
@@ -279,7 +280,8 @@ def gamepage(ids):
     game = games.get(games.gid == ids)
     type = choiceQues(ids)
     loggedUser = list(logged.select())[0].sid
-    return render_template('gamepage.html', game = game, type = type, id = loggedUser)
+    loggedUserName = students.get(students.sid == loggedUser).name
+    return render_template('gamepage.html', game = game, type = type, id = loggedUser, name = loggedUserName)
 
 
 @app.route('/gamesPlayed', methods = ['POST'])
